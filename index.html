@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Slider Captcha</title>
+<meta content='width=device-width, initial-scale=1.0' name='viewport' />
+<!-- Meta Name -->
+<meta name="Description" content="Test page for Slider Captcha" />
+<meta name="Language" content="en-EN" />
+<meta name="Robots" content="all" />
+<meta name="Author" content="João Pargana" />
+<meta name="Copyright" content="GPL" />
+<meta name="Distribution" content="Global" />
+<meta name="Rating" content="General" />
+
+<link rel="stylesheet" href="/css/slider-captcha.css?ver=0.1" media="screen">
+
+<script src="/components/jQuery/dist/jquery.min.js?ver=0.1"></script>
+
+<script src="/components/jquery.ui/ui/jquery.ui.core.js?ver=0.1"></script>
+<script src="/components/jquery.ui/ui/jquery.ui.widget.js?ver=0.1"></script>
+<script src="/components/jquery.ui/ui/jquery.ui.mouse.js?ver=0.1"></script>
+<script src="/components/jquery.ui/ui/jquery.ui.draggable.js?ver=0.1"></script>
+<script src="/components/jquery.ui/ui/jquery.ui.droppable.js?ver=0.1"></script>
+
+<script src="/components/jquery-touchswipe/jquery.touchSwipe.min.js"></script>
+
+
+<script src="/js/slider-captcha.js?ver=0.1"></script>
+<script>
+	$(document).ready(function () {
+		$( '#slider' ).sliderCaptcha();
+		$( '#slider_contained' ).sliderCaptcha({
+			hinttext: "Arraste para desbloquear",
+			hinttext_size: '10px',
+			width: '90%',
+			styles: {
+				knobcolor: "#5CDF3B",
+				disabledknobcolor: "#000000",
+				backgroundcolor: "#eee",
+				textcolor: "#A3A3A3"
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<main>
+		<h3>Slider in a fluid container</h4>
+		<div id="slider"></div>
+
+		<h3>Slider in a fixed container</h4>
+		<div style="width: 250px;">
+			<div id="slider_contained"></div>
+		</div>
+</body>
+</html>
