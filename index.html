@@ -26,20 +26,21 @@
 
 <script src="/components/jquery-touchswipe/jquery.touchSwipe.min.js"></script>
 
-
 <script src="/js/slider-captcha.js?ver=0.1"></script>
 <script>
 	$(document).ready(function () {
 		$( '#slider' ).sliderCaptcha();
 		$( '#slider_contained' ).sliderCaptcha({
-			hinttext: "Arraste para desbloquear",
+			hinttext: "Arraste para continuar",
 			hinttext_size: '10px',
 			width: '90%',
+			height: '30px',
+			text_after_unlock: 'Desbloqueado',
 			styles: {
 				knobcolor: "#5CDF3B",
 				disabledknobcolor: "#000000",
-				backgroundcolor: "#eee",
-				textcolor: "#A3A3A3"
+				backgroundcolor: "#444",
+				textcolor: "#0d0"
 			}
 		});
 	});

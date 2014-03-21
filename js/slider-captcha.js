@@ -8,10 +8,10 @@
 			
 			var s = settings;
 
-			$( this ).addClass( 'slider_captcha' ).width( s.width ).append(
-				$( '<span>' ).css( 'font-size', s.hinttext_size ).text( s.hinttext )).append( 
-				$( '<div>' ).addClass( 'swipe-knob ui-draggable' ) ).append( 
-				$( '<div>' ).addClass( 'knob-destiny' ));
+			$( this ).addClass( 'slider_captcha' ).width( s.width ).height( s.height ).css( 'background', s.styles.backgroundcolor ).append(
+				$( '<span>' ).css( { 'font-size': s.hinttext_size, 'color': s.styles.textcolor } ).text( s.hinttext ) ).append( 
+				$( '<div>' ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobcolor ).width( s.height ).height( s.height ) ).append( 
+				$( '<div>' ).addClass( 'knob-destiny' ).width( s.height ).height( s.height ) );
 
 			$( this ).find( '.swipe-knob' ).draggable({
 				containment: "parent", 
@@ -25,9 +25,12 @@
 			$( this ).find( '.knob-destiny' ).droppable({
 				acccept: '.swipe-handle',
 				tolerance: 'intersect',
-				drop: function(event, ui) {
+				drop: function(event, ui) { console.log( s.text_after_unlock.length );
+					if( s.text_after_unlock.length )
+						$( ui.draggable ).parent().find('span').text(s.text_after_unlock);
+
 					$( this ).droppable( "option", "disabled", true );
-					$( ui.draggable ).addClass( 'swipe_ended' ).css( 'left', 'auto' ).draggable({disabled: true});
+					$( ui.draggable ).addClass( 'swipe_ended' ).css( { 'left': 'auto', 'background': s.styles.disabledknobcolor } ).draggable({disabled: true})
 				}
 			})
 
@@ -44,13 +47,16 @@
 	$.fn.sliderCaptcha.defaults = {
 			styles: {
 				knobcolor: "",
-				disabledknobcolor: "",
-				backgroundcolor: ""
+				disabledknobcolor: "auto",
+				backgroundcolor: "",
+				textcolor: ""
 			},
 			formid: "",
 			width: "100%",
+			height: "",
 			hinttext: "Slide to Submit",
 			hinttext_size: "",
+			text_after_unlock: "Desbloqueado",
 			beforeUnlock : function() {},
 			afterUnlock : function() {},
 			beforeSubmit : function() {},

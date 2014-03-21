@@ -12,12 +12,11 @@
   text-align: center;
   color: #A3A3A3;
   background: #eee;
+  display: table;
   position: relative;
-  float: left;
   width: 100%;
   height: 46px;
   padding: 0;
-  line-height: 47px;
   -moz-border-top-left-radius: 3px;
   -moz-border-bottom-left-radius: 3px;
   -webkit-border-top-left-radius: 3px;
@@ -37,9 +36,12 @@
   -ms-user-select: none;
   user-select: none; }
   .slider_captcha span {
+    display: table-cell;
+    vertical-align: middle;
     cursor: default; }
 
 .swipe-knob {
+  display: table;
   position: absolute;
   top: 0;
   left: 0;
@@ -67,6 +69,8 @@
   -ms-user-select: none;
   user-select: none; }
   .swipe-knob:after {
+    display: table-cell;
+    vertical-align: middle;
     font-size: 20px;
     content: "›"; }
   .swipe-knob.swipe_ended {

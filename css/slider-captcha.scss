@@ -16,30 +16,32 @@
 	color: #A3A3A3;
 
 	background: #eee;
-	
+
+	display: table;
 	position: relative;
-	float: left;
 	width: 100%;
-	height: $slider-heigth;
+	height: $slider-height;
 
 	padding: 0;
-	line-height: 47px;
 
 	@include rect-left-radius();
 	@include rect-right-radius();
 	@include text-not-selectable();
 	span {
+		display: table-cell;
+		vertical-align: middle;
 		cursor: default;
 	}
 }
 
 .swipe-knob {
+	display: table;
 	position: absolute;
 	top: 0;
 	left: 0;
 
-	width: $slider-heigth;
-	height: $slider-heigth;
+	width: $slider-height;
+	height: $slider-height;
 
 	background-color: #72D5EE;
 	color: #fff;
@@ -47,6 +49,8 @@
 	cursor: move;
 
 	&:after {
+		display: table-cell;
+		vertical-align: middle;		
 		font-size: 20px;
 		content: "›";
 	}
@@ -65,6 +69,6 @@
 	top: 0;
 	right: 0;
 
-	width: $slider-heigth;
-	height: $slider-heigth;	
+	width: $slider-height;
+	height: $slider-height;	
 }
