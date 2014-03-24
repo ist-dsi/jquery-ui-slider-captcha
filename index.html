@@ -14,19 +14,19 @@
 <meta name="Distribution" content="Global" />
 <meta name="Rating" content="General" />
 
-<link rel="stylesheet" href="/css/slider-captcha.css?ver=0.1" media="screen">
+<link rel="stylesheet" href="css/slider-captcha.css?ver=0.1" media="screen">
 
-<script src="/components/jQuery/dist/jquery.min.js?ver=0.1"></script>
+<script src="components/jQuery/dist/jquery.min.js?ver=0.1"></script>
 
-<script src="/components/jquery.ui/ui/jquery.ui.core.js?ver=0.1"></script>
-<script src="/components/jquery.ui/ui/jquery.ui.widget.js?ver=0.1"></script>
-<script src="/components/jquery.ui/ui/jquery.ui.mouse.js?ver=0.1"></script>
-<script src="/components/jquery.ui/ui/jquery.ui.draggable.js?ver=0.1"></script>
-<script src="/components/jquery.ui/ui/jquery.ui.droppable.js?ver=0.1"></script>
+<script src="components/jquery.ui/ui/jquery.ui.core.js?ver=0.1"></script>
+<script src="components/jquery.ui/ui/jquery.ui.widget.js?ver=0.1"></script>
+<script src="components/jquery.ui/ui/jquery.ui.mouse.js?ver=0.1"></script>
+<script src="components/jquery.ui/ui/jquery.ui.draggable.js?ver=0.1"></script>
+<script src="components/jquery.ui/ui/jquery.ui.droppable.js?ver=0.1"></script>
 
-<script src="/components/jquery-touchswipe/jquery.touchSwipe.min.js"></script>
+<script src="components/jquery-ui-touch-punch-improved/jquery.ui.touch-punch-improved.js"></script>
 
-<script src="/js/slider-captcha.js?ver=0.1"></script>
+<script src="js/slider-captcha.js?ver=0.1"></script>
 <script>
 	$(document).ready(function () {
 		$( '#slider' ).sliderCaptcha();
@@ -41,6 +41,17 @@
 				disabledknobcolor: "#000000",
 				backgroundcolor: "#444",
 				textcolor: "#0d0"
+			},
+			events: {
+				afterUnlock: function () {
+					console.log("afterUnlock event");
+				},
+				beforeUnlock: function () {
+					console.log("afterSubmit event");
+				},
+				beforeSubmit: function () {
+					console.log("beforeSubmit event");
+				}
 			}
 		});
 	});
@@ -52,8 +63,11 @@
 		<div id="slider"></div>
 
 		<h3>Slider in a fixed container</h4>
-		<div style="width: 250px;">
-			<div id="slider_contained"></div>
-		</div>
+		<form action="/action_test.php">
+			<div style="width: 250px;">
+				<div id="slider_contained"></div>
+			</div>
+			<input type="submit"/>
+		</form>
 </body>
 </html>
