@@ -29,7 +29,7 @@
 			});
 
 			$this.find( '.knob-destiny' ).droppable({
-				acccept: '.swipe-handle',
+				acccept: '.swipe-knob',
 				tolerance: 'intersect',
 				drop: function(event, ui) {
 
@@ -57,7 +57,6 @@
 							if ( events['beforeSubmit'] )
 								events['beforeSubmit'].apply();
 
-							return false;
 						})
 				}
 			})
