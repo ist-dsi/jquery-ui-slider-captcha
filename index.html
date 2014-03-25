@@ -29,13 +29,17 @@
 <script src="js/slider-captcha.js?ver=0.1"></script>
 <script>
 	$(document).ready(function () {
-		$( '#slider' ).sliderCaptcha();
+		$( '#slider' ).sliderCaptcha({
+			events: {
+				submitAfterUnlock: 1
+			}
+		});
 		$( '#slider_contained' ).sliderCaptcha({
-			hinttext: "Arraste para continuar",
+			hinttext: "Arrastar para validar",
 			hinttext_size: '10px',
 			width: '90%',
 			height: '30px',
-			text_after_unlock: 'Desbloqueado',
+			text_after_unlock: 'Validado',
 			styles: {
 				knobcolor: "#5CDF3B",
 				disabledknobcolor: "#000000",
@@ -52,7 +56,13 @@
 				beforeSubmit: function () {
 					console.log("beforeSubmit event");
 				}
+			},
+			type: "filled",
+			face: {
+				_top: 4,
+				_right: 11
 			}
+
 		});
 	});
 </script>

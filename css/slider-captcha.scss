@@ -19,6 +19,7 @@
 
 	display: table;
 	position: relative;
+	overflow: hidden;
 	width: 100%;
 	height: $slider-height;
 
@@ -39,7 +40,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-
+	
 	width: $slider-height;
 	height: $slider-height;
 
@@ -48,16 +49,39 @@
 	
 	cursor: move;
 
-	&:after {
+	&.type_filled {
+		left: $slider-height;
+		margin-left: -100%;
+		width: 100%;
+
+		span {
+			position: absolute;
+			right: 19px;
+			top: 11px;			
+			&:after {
+				font-size: 20px;
+				content: "›";
+			}
+			cursor: move;
+		}
+	}
+
+	&:not(.type_filled):after {
 		display: table-cell;
-		vertical-align: middle;		
+		vertical-align: middle;
 		font-size: 20px;
 		content: "›";
+		cursor: move;
 	}
 
 	&.swipe_ended {
 		background-color: #868D8F;
 		right: 0;
+		cursor: auto;
+		span {
+			content: "&#10004;";
+		}
+		
 	}
 
 	@include rect-radius();

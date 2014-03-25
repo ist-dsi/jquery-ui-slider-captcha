@@ -14,6 +14,7 @@
   background: #eee;
   display: table;
   position: relative;
+  overflow: hidden;
   width: 100%;
   height: 46px;
   padding: 0;
@@ -68,14 +69,30 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
-  .swipe-knob:after {
+  .swipe-knob.type_filled {
+    left: 46px;
+    margin-left: -100%;
+    width: 100%; }
+    .swipe-knob.type_filled span {
+      position: absolute;
+      right: 19px;
+      top: 11px;
+      cursor: move; }
+      .swipe-knob.type_filled span:after {
+        font-size: 20px;
+        content: "›"; }
+  .swipe-knob:not(.type_filled):after {
     display: table-cell;
     vertical-align: middle;
     font-size: 20px;
-    content: "›"; }
+    content: "›";
+    cursor: move; }
   .swipe-knob.swipe_ended {
     background-color: #868D8F;
-    right: 0; }
+    right: 0;
+    cursor: auto; }
+    .swipe-knob.swipe_ended span {
+      content: "&#10004;"; }
 
 .knob-destiny {
   position: absolute;
