@@ -29,22 +29,22 @@
 <script src="js/slider-captcha.js?ver=0.1"></script>
 <script>
 	$(document).ready(function () {
-		$( '#slider' ).sliderCaptcha({
-			events: {
-				submitAfterUnlock: 1
-			}
-		});
+		$( '#slider' ).sliderCaptcha();
+		$( '#slider_2' ).sliderCaptcha({
+			type: "filled"
+		});		
 		$( '#slider_contained' ).sliderCaptcha({
 			hinttext: "Arrastar para validar",
 			hinttext_size: '10px',
-			width: '90%',
-			height: '30px',
 			text_after_unlock: 'Validado',
 			styles: {
 				knobcolor: "#5CDF3B",
 				disabledknobcolor: "#000000",
 				backgroundcolor: "#444",
-				textcolor: "#0d0"
+				textcolor: "#A0A",
+				unlocktextcolor: "#fff",
+				width: '90%',
+				height: '30px'
 			},
 			events: {
 				afterUnlock: function () {
@@ -55,12 +55,14 @@
 				},
 				beforeSubmit: function () {
 					console.log("beforeSubmit event");
-				}
+				},
+				submitAfterUnlock: 0,
+				validateOnServer: 1
 			},
 			type: "filled",
 			face: {
-				_top: 4,
-				_right: 11
+				_top: 2,
+				_right: 10
 			}
 
 		});
@@ -72,8 +74,12 @@
 		<h3>Slider in a fluid container</h4>
 		<div id="slider"></div>
 
+		<h3>Slider in a fluid container - type 2</h4>
+		<div id="slider_2"></div>		
+
 		<h3>Slider in a fixed container</h4>
-		<form action="/action_test.php">
+		<form method="post" action="#">
+			<input type="text" name="title" />
 			<div style="width: 250px;">
 				<div id="slider_contained"></div>
 			</div>

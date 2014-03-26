@@ -32,6 +32,7 @@
 		display: table-cell;
 		vertical-align: middle;
 		cursor: default;
+		position: relative;
 	}
 }
 
@@ -49,43 +50,61 @@
 	
 	cursor: move;
 
+	&:not(.type_filled){
+
+		//span {
+			&:after {
+				font-family: 'entypo';
+				display: table-cell;
+				vertical-align: middle;
+				font-size: 26px;
+				content: "\E766";
+				cursor: move;
+			}
+		//}
+
+		&.swipe_ended {
+			background-color: #868D8F;
+			right: 0;
+			cursor: auto;
+			&:after {
+				content: "\2713";
+			}
+		}
+	}
+
 	&.type_filled {
 		left: $slider-height;
 		margin-left: -100%;
 		width: 100%;
+		
 
 		span {
 			position: absolute;
 			right: 19px;
-			top: 11px;			
+			top: 11px;
+
 			&:after {
-				font-size: 20px;
-				content: "›";
+				font-family: 'entypo';
+				font-size: 26px;
+				content: "\E766";
 			}
 			cursor: move;
 		}
-	}
 
-	&:not(.type_filled):after {
-		display: table-cell;
-		vertical-align: middle;
-		font-size: 20px;
-		content: "›";
-		cursor: move;
-	}
+		&.swipe_ended {
+			background-color: #868D8F;
+			right: 0;
+			cursor: auto;
 
-	&.swipe_ended {
-		background-color: #868D8F;
-		right: 0;
-		cursor: auto;
-		span {
-			content: "&#10004;";
-		}
-		
+			span:after {
+				content: "\2713";
+			}
+		}		
 	}
 
 	@include rect-radius();
-	@include text-not-selectable();	
+	@include text-not-selectable();
 }
 
 .knob-destiny {
@@ -96,3 +115,5 @@
 	width: $slider-height;
 	height: $slider-height;	
 }
+
+@import "partials/entypo";

@@ -10,24 +10,25 @@
 				$this = $( this ),
 				$form = $this.closest( "form" );
 
-			if ( $form.length && $form.find( 'input[type="submit"]' ) )
+			if ( $form.length && $form.find( 'input[type="submit"]' ) ) {
 				$form.find( 'input[type="submit"]' ).attr('disabled','disabled');
+			}
 
 			// Start slider criation
-			$this.addClass( 'slider_captcha' ).width( s.width ).height( s.height ).css( 'background', s.styles.backgroundcolor );
+			$this.addClass( 'slider_captcha' ).width( s.styles.width ).height( s.styles.height ).css( 'background', s.styles.backgroundcolor );
 
 			if ( s.type == "filled") {
 				$this.append(
-					$( '<span>' ).data( 'text-unlocked', s.text_after_unlock ).css( { 'font-size': s.hinttext_size, 'color': s.styles.textcolor } ).text( s.hinttext ) ).append(
-					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobcolor, 'left':s.height} ).height( s.height ).append(
+					$( '<span>' ).data( 'text-color-unlocked', s.styles.unlocktextcolor ).data( 'text-unlocked', s.text_after_unlock ).css( { 'font-size': s.hinttext_size, 'color': s.styles.textcolor } ).text( s.hinttext ) ).append(
+					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobcolor, 'left': s.styles.height } ).height( s.styles.height ).append(
 					$( '<span>' ).addClass( 'knob_face' ).css({ 'top': s.face._top , 'right': s.face._right }) ) );
 			} else {
 				$this.append(
-					$( '<span>' ).data( 'text-unlocked', s.text_after_unlock ).css( { 'font-size': s.hinttext_size, 'color': s.styles.textcolor } ).text( s.hinttext ) ).append( 
-					$( '<div>' ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobcolor ).height( s.height ) );
+					$( '<span>' ).data( 'text-color-unlocked', s.styles.unlocktextcolor ).data( 'text-unlocked', s.text_after_unlock ).css( { 'font-size': s.hinttext_size, 'color': s.styles.textcolor } ).text( s.hinttext ) ).append( 
+					$( '<div>' ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobcolor ).height( s.styles.height ) );
 			}
 
-			$this.data( 'events', s.events ).append( $( '<div>' ).addClass( 'knob-destiny' ).data( 'disabled-knobcolor', s.styles.disabledknobcolor ).width( s.height ).height( s.height ) ).data( 'form', $form);
+			$this.data( 'events', s.events ).append( $( '<div>' ).addClass( 'knob-destiny' ).data( 'disabled-knobcolor', s.styles.disabledknobcolor ).width( s.styles.height ).height( s.styles.height ) ).data( 'form', $form);
 			// Finished slider criation
 
 			$this.find( '.swipe-knob' ).draggable({
@@ -45,33 +46,42 @@
 				drop: function(event, ui) {
 
 					var events = $( this ).parent().data( 'events' ),
-						form = $( this ).parent().data( 'form' );
+						slider_elem = $( this ).parent(),
+						slider_text_elem = slider_elem.find( 'span:eq(0)' ),
+						drag_elem = $( ui.draggable ),
+						drop_elem = $( this ),
+						form = slider_elem.data( 'form' );
 
 					// Event before unlock
-					if ( events['beforeUnlock'] )
+					if ( events['beforeUnlock'] && typeof( events['beforeUnlock'] ) == "function" )
 						events['beforeUnlock'].apply();
 
 					if( s.text_after_unlock.length )
-						$( ui.draggable ).parent().find('span:eq(0)').text( $( ui.draggable ).parent().find('span:eq(0)').data( 'text-unlocked' ) );
+						slider_text_elem.text( slider_text_elem.data( 'text-unlocked' ) );
 
-					$( this ).droppable( "option", "disabled", true );
-					$( ui.draggable ).addClass( 'swipe_ended' ).css( { 'left': 'auto', 'background': $( this ).data( 'disabled-knobcolor' ) } ).draggable({ disabled: true })
+					drop_elem.droppable( "option", "disabled", true );
+					slider_text_elem.css( { 'z-index': 2, 'color': slider_text_elem.data( 'text-color-unlocked' ) } );
+					drag_elem.addClass( 'swipe_ended' ).css( { 'left': 'auto', 'background': drop_elem.data( 'disabled-knobcolor' ) } ).draggable({ disabled: true });
 
 					// Event after unlock
-					if ( events['afterUnlock'] )
+					if ( events['afterUnlock'] && typeof( events['afterUnlock'] ) == "function" )
 						events['afterUnlock'].apply();
 
-					if ( form.length )
+					if ( form.length ) {
+
+						if ( events['validateOnServer'] )
+							form.append( $( '<input>' ).attr( 'type', 'hidden' ).attr( 'name', 'slider_captcha_validated' ).val( 1 ) );
+						
 						form.find( 'input[type="submit"]' ).removeAttr( 'disabled' ).click( function () {
-							
 							// Event before submit
-							if ( events['beforeSubmit'] )
+							if ( events['beforeSubmit'] && typeof( events['beforeSubmit'] ) == "function" )
 								events['beforeSubmit'].apply();
 
 						});
 
 						if ( events['submitAfterUnlock'] )
 							form.submit();
+					}
 				}
 			})
 		});
@@ -79,15 +89,17 @@
 
 	// Plugin defaults
 	$.fn.sliderCaptcha.defaults = {
+		type: "normal",
 		styles: {
 			knobcolor: "",
 			disabledknobcolor: "#5CDF3B",
 			backgroundcolor: "",
-			textcolor: ""
+			textcolor: "",
+			unlocktextcolor: "",
+			width: "100%",
+			height: ""
 		},
-		formid: "",
-		width: "100%",
-		height: "",
+
 		hinttext: "Slide to Submit",
 		hinttext_size: "",
 		text_after_unlock: "Unlocked",
@@ -95,14 +107,18 @@
 			beforeUnlock: function() {},
 			afterUnlock: function() {},
 			beforeSubmit: function() {},
-			submitAfterUnlock: 0
+			submitAfterUnlock: 0,
+			validateOnServer: 0
 		},
-		type: "normal",
+		
 		face: {
 			image: '',
-			_top: 0,
-			_right: 0
-		}
+			_top: '',
+			_right: '',
+			entypo_start: 'chevron-small-right',
+			entypo_end: 'check'
+		},
+
 	};
 
 }( jQuery ));
