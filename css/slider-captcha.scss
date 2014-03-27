@@ -3,6 +3,7 @@
  */
 
 @import "partials/base";
+@import "partials/entypo";
 
 /*
  * GENERAL STYLES
@@ -37,7 +38,7 @@
 }
 
 .swipe-knob {
-	display: table;
+	
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -48,11 +49,22 @@
 	background-color: #72D5EE;
 	color: #fff;
 	
-	cursor: move;
-
 	&:not(.type_filled){
 
-		//span {
+		&[class*=" icon-"] > span:after {
+			display: none;
+		}
+
+		span {
+			display: table;
+			width: 100%;
+			height: 100%;
+			cursor: move;
+
+			&:before {
+				display: table-cell;
+				vertical-align: middle;
+			}
 			&:after {
 				font-family: 'entypo';
 				display: table-cell;
@@ -61,24 +73,50 @@
 				content: "\E766";
 				cursor: move;
 			}
-		//}
+		}
 
 		&.swipe_ended {
+
 			background-color: #868D8F;
 			right: 0;
 			cursor: auto;
-			&:after {
-				content: "\2713";
+
+			span {
+				width: 100%;
+				height: 100%;				
+				&[class*=" icon-"]:after {
+					display: none;
+				}
+				&:after {
+					content: "\2713";
+				}
 			}
-		}
+		}		
 	}
 
 	&.type_filled {
 		left: $slider-height;
 		margin-left: -100%;
 		width: 100%;
+		cursor: move;
 		
+		&[class*=" icon-"] {
+			span {
+				position: absolute;
+				right: 19px;
+				top: 11px;
+				cursor: move;
 
+				&:after {
+					display: none;
+				}
+				&:before {
+  					display: block;
+  					vertical-align: none;
+				}
+			}
+		}
+	
 		span {
 			position: absolute;
 			right: 19px;
@@ -115,5 +153,3 @@
 	width: $slider-height;
 	height: $slider-height;	
 }
-
-@import "partials/entypo";

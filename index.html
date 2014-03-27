@@ -29,10 +29,51 @@
 <script src="js/slider-captcha.js?ver=0.1"></script>
 <script>
 	$(document).ready(function () {
-		$( '#slider' ).sliderCaptcha();
+		$( '#slider' ).sliderCaptcha({ 
+			face: {
+				entypo_start: 'plus',
+				entypo_end: 'stop'
+			}
+		});
+		$( '#slider_1' ).sliderCaptcha({
+			face: {
+				entypo_start: 'plus',
+			}
+		});
 		$( '#slider_2' ).sliderCaptcha({
-			type: "filled"
+			face: {
+				entypo_end: 'plus',
+			}
 		});		
+		$( '#slider_3' ).sliderCaptcha();
+
+		$( '#slider_filled' ).sliderCaptcha({ 
+			type: "filled",
+			face: {
+				entypo_start: 'plus',
+				entypo_end: 'stop',
+				_top: 8,
+				_right: 18
+			}
+		});
+		$( '#slider_1_filled' ).sliderCaptcha({
+			type: "filled",
+			face: {
+				entypo_start: 'plus',
+				_top: 8,
+				_right: 18				
+			}
+		});
+		$( '#slider_2_filled' ).sliderCaptcha({
+			type: "filled",
+			face: {
+				entypo_end: 'plus',
+			}
+		});		
+		$( '#slider_3_filled' ).sliderCaptcha({
+			type: "filled"
+		});
+
 		$( '#slider_contained' ).sliderCaptcha({
 			hinttext: "Arrastar para validar",
 			hinttext_size: '10px',
@@ -62,7 +103,8 @@
 			type: "filled",
 			face: {
 				_top: 2,
-				_right: 10
+				_right: 10,
+				entypo_start: 'pause'
 			}
 
 		});
@@ -73,9 +115,15 @@
 	<main>
 		<h3>Slider in a fluid container</h4>
 		<div id="slider"></div>
+		<div id="slider_1"></div>
+		<div id="slider_2"></div>
+		<div id="slider_3"></div>
 
 		<h3>Slider in a fluid container - type 2</h4>
-		<div id="slider_2"></div>		
+		<div id="slider_filled"></div>
+		<div id="slider_1_filled"></div>
+		<div id="slider_2_filled"></div>
+		<div id="slider_3_filled"></div>
 
 		<h3>Slider in a fixed container</h4>
 		<form method="post" action="#">
