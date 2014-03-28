@@ -42,12 +42,16 @@
 		});
 		$( '#slider_2' ).sliderCaptcha({
 			face: {
-				entypo_end: 'plus',
-			}
+				entypo_end: 'plus'
+			},
+			styles: {
+					unlocktextcolor: "#5CDF3B"
+				}
 		});		
 		$( '#slider_3' ).sliderCaptcha();
 
 		$( '#slider_filled' ).sliderCaptcha({ 
+			textfeedbackanimation: 'swipe',
 			type: "filled",
 			face: {
 				entypo_start: 'plus',
@@ -57,6 +61,7 @@
 			}
 		});
 		$( '#slider_1_filled' ).sliderCaptcha({
+			textfeedbackanimation: 'swipe_overlap',
 			type: "filled",
 			face: {
 				entypo_start: 'plus',
@@ -65,6 +70,7 @@
 			}
 		});
 		$( '#slider_2_filled' ).sliderCaptcha({
+			textfeedbackanimation: 'swipe',
 			type: "filled",
 			face: {
 				entypo_end: 'plus',
@@ -77,6 +83,7 @@
 		});
 
 		$( '#slider_contained' ).sliderCaptcha({
+			textfeedbackanimation: 'swipe',
 			hinttext: "Arrastar para validar",
 			hinttext_size: '10px',
 			text_after_unlock: 'Validado',

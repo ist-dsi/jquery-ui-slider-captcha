@@ -18,10 +18,15 @@
 			$this.addClass( 'slider_captcha' ).width( s.styles.width ).height( s.styles.height ).css( 'background', s.styles.backgroundcolor );
 
 			if ( s.type == "filled") {
+				if ( s.textfeedbackanimation == "overlap") {
+				
+				}
 				$this.append(
-					$( '<span>' ).append( $( '<span>' ).text( s.hinttext ) ).data( 'text-color-unlocked', s.styles.unlocktextcolor ).data( 'text-unlocked', s.text_after_unlock ).css( { 'font-size': s.hinttext_size, 'color': s.styles.textcolor } ) ).append(
+					$( '<span>' ).append( $( '<span>' ).text( s.hinttext ) ).data( 'animation-type', s.textfeedbackanimation ).data( 'text-color-unlocked', s.styles.unlocktextcolor ).data( 'text-unlocked', s.text_after_unlock ).css( { 'font-size': s.hinttext_size, 'color': s.styles.textcolor } ) ).append(
 					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobcolor, 'left': s.styles.height } ).height( s.styles.height ).append(
 					$( '<span>' ).data( 'top-end', s.face._top_end ).data( 'right-end', s.face._right_end ).addClass( 'knob_face' ).css({ 'top': s.face._top_start , 'right': s.face._right_start }) ) );
+
+					$this.find( 'span > span' ).css( 'left', $this.get(0).getBoundingClientRect().width / 2 - $this.find( 'span > span' ).get(0).getBoundingClientRect().width / 2 );
 			} else {
 				$this.append(
 					$( '<span>' ).data( 'text-color-unlocked', s.styles.unlocktextcolor ).data( 'text-unlocked', s.text_after_unlock ).css( { 'font-size': s.hinttext_size, 'color': s.styles.textcolor } ).text( s.hinttext ) ).append( 
@@ -38,6 +43,8 @@
 
 			$this.find( '.knob_face' ).css( 'color', s.face.text_color_start ).data( 'end-text-color',  s.face.text_color_end );
 			$this.data( 'events', s.events ).append( $( '<div>' ).addClass( 'knob-destiny' ).data( 'disabled-knobcolor', s.styles.disabledknobcolor ).width( s.styles.height ).height( s.styles.height ) ).data( 'form', $form);
+
+
 			// Finished slider criation
 
 			$this.find( '.swipe-knob' ).draggable({
@@ -48,10 +55,43 @@
 				revert: 'invalid',
 				zIndex: '1',
 				drag: function ( event, ui ) {
-					console.log( 'Position', ui.offset, 'Max', $( this ).parent().find( 'span' )[0] );
+
+					if ( $( this ).parent().find( 'span > span' ).parent().data( 'animation-type' ) ) {
+
+						var $slider_elem = $( this ).parent(),
+							slider_elem_coord = $slider_elem.get(0).getBoundingClientRect(),
+							$feedback_elem = $slider_elem.find( 'span > span' ),
+							feedback_elem_coord = $feedback_elem.get(0).getBoundingClientRect(),
+							feedback_elem_x;
+
+						if ( 'swipe_overlap' == $feedback_elem.parent().data( 'animation-type' ) ) {
+							// swipe_overlap
+							if ( ( slider_elem_coord.width - feedback_elem_coord.width ) / 2 > ui.offset.left ) {
+								feedback_elem_x = ( slider_elem_coord.width - feedback_elem_coord.width ) / 2;
+							} else if ( 10 + ui.offset.left + feedback_elem_coord.width > slider_elem_coord.width ) {
+								feedback_elem_x = slider_elem_coord.width - feedback_elem_coord.width - 10;
+							} else {
+								feedback_elem_x = ui.offset.left;
+							}
+							$feedback_elem.css( 'left', feedback_elem_x );
+						} else if( 'swipe' == $feedback_elem.parent().data( 'animation-type' ) ) {
+							// swipe
+							feedback_elem_x = feedback_elem_x = ( ( slider_elem_coord.width - feedback_elem_coord.width ) / 2 < ui.offset.left ) ? ui.offset.left : ( slider_elem_coord.width - feedback_elem_coord.width ) / 2;
+							$feedback_elem.css( 'left', feedback_elem_x );
+						}
+					
+					}
+
 				},
 				stop: function( event, ui ) {
-					console.log( 'Stopped' );
+					if ( $( this ).parent().find( 'span > span' ).parent().data( 'animation-type' ) ) {
+
+						$( this ).parent().find( 'span > span' ).animate({
+							'left': $( this ).parent().get(0).getBoundingClientRect().width / 2 - $( this ).parent().find( 'span > span' ).get(0).getBoundingClientRect().width / 2
+						}
+						, 200);
+
+					}
 				},
 				start: function( event, ui ) {
 					console.log( 'Started' );
@@ -126,19 +166,20 @@
 	// Plugin defaults
 	$.fn.sliderCaptcha.defaults = {
 		type: 'normal',
+		textfeedbackanimation: 'overlap',
 		styles: {
 			knobcolor: '',
 			disabledknobcolor: '#5CDF3B',
 			backgroundcolor: '',
 			textcolor: '',
-			unlocktextcolor: '',
+			unlocktextcolor: '#fff',
 			width: '100%',
 			height: ''
 		},
 
-		hinttext: 'Slide to Submit',
+		hinttext: 'Slide to Unlock',
 		hinttext_size: '',
-		text_after_unlock: 'Unlocked',
+		text_after_unlock: 'You rock!',
 		events: {
 			beforeUnlock: function() {},
 			afterUnlock: function() {},
