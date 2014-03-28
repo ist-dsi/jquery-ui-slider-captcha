@@ -52,24 +52,26 @@
 			face: {
 				entypo_start: 'plus',
 				entypo_end: 'stop',
-				_top: 8,
-				_right: 18
+				_top_start: 8,
+				_right_start: 18
 			}
 		});
 		$( '#slider_1_filled' ).sliderCaptcha({
 			type: "filled",
 			face: {
 				entypo_start: 'plus',
-				_top: 8,
-				_right: 18				
+				_top_start: 8,
+				_right_start: 18
 			}
 		});
 		$( '#slider_2_filled' ).sliderCaptcha({
 			type: "filled",
 			face: {
 				entypo_end: 'plus',
+				_top_end: 1,
+				_right_end: 1
 			}
-		});		
+		});
 		$( '#slider_3_filled' ).sliderCaptcha({
 			type: "filled"
 		});
@@ -102,11 +104,12 @@
 			},
 			type: "filled",
 			face: {
-				_top: 2,
-				_right: 10,
-				entypo_start: 'pause'
+				_top_start: -3,
+				_right_start: 6,
+				entypo_start: 'pause',
+				text_color_start: '#000',
+				text_color_end: '#faf'
 			}
-
 		});
 	});
 </script>

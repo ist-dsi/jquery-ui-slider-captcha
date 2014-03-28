@@ -19,14 +19,15 @@
 
 			if ( s.type == "filled") {
 				$this.append(
-					$( '<span>' ).data( 'text-color-unlocked', s.styles.unlocktextcolor ).data( 'text-unlocked', s.text_after_unlock ).css( { 'font-size': s.hinttext_size, 'color': s.styles.textcolor } ).text( s.hinttext ) ).append(
+					$( '<span>' ).append( $( '<span>' ).text( s.hinttext ) ).data( 'text-color-unlocked', s.styles.unlocktextcolor ).data( 'text-unlocked', s.text_after_unlock ).css( { 'font-size': s.hinttext_size, 'color': s.styles.textcolor } ) ).append(
 					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobcolor, 'left': s.styles.height } ).height( s.styles.height ).append(
-					$( '<span>' ).addClass( 'knob_face' ).css({ 'top': s.face._top , 'right': s.face._right }) ) );
+					$( '<span>' ).data( 'top-end', s.face._top_end ).data( 'right-end', s.face._right_end ).addClass( 'knob_face' ).css({ 'top': s.face._top_start , 'right': s.face._right_start }) ) );
 			} else {
 				$this.append(
 					$( '<span>' ).data( 'text-color-unlocked', s.styles.unlocktextcolor ).data( 'text-unlocked', s.text_after_unlock ).css( { 'font-size': s.hinttext_size, 'color': s.styles.textcolor } ).text( s.hinttext ) ).append( 
 					$( '<div>' ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobcolor ).height( s.styles.height ).append(
 					$( '<span>' ).addClass( 'knob_face' ) ) );
+					// _top_end and _right_end end only matters for filled slider type
 			}
 
 			if ( s.face.entypo_start.length )
@@ -35,6 +36,7 @@
 			if ( s.face.entypo_end.length )
 				$this.find( '.swipe-knob' ).data( 'end-icon', s.face.entypo_end );
 
+			$this.find( '.knob_face' ).css( 'color', s.face.text_color_start ).data( 'end-text-color',  s.face.text_color_end );
 			$this.data( 'events', s.events ).append( $( '<div>' ).addClass( 'knob-destiny' ).data( 'disabled-knobcolor', s.styles.disabledknobcolor ).width( s.styles.height ).height( s.styles.height ) ).data( 'form', $form);
 			// Finished slider criation
 
@@ -44,7 +46,16 @@
 				axis: 'x',
 				cursor: 'move',
 				revert: 'invalid',
-				zIndex: '1'
+				zIndex: '1',
+				drag: function ( event, ui ) {
+					console.log( 'Position', ui.offset, 'Max', $( this ).parent().find( 'span' )[0] );
+				},
+				stop: function( event, ui ) {
+					console.log( 'Stopped' );
+				},
+				start: function( event, ui ) {
+					console.log( 'Started' );
+				}
 			});
 
 			$this.find( '.knob-destiny' ).droppable({
@@ -59,14 +70,22 @@
 						$drop_elem = $( this ),
 						$form = $slider_elem.data( 'form' );
 
-					/*if ( s.face.entypo_start.length )
-						$this.find( '.swipe-knob' ).addClass( 'icon-' + s.face.entypo_start );*/
+
+					if ( $drag_elem.find( '.knob_face' ).data( 'end-text-color' ) )
+						$drag_elem.find( '.knob_face' ).css( 'color', $drag_elem.find( '.knob_face' ).data( 'end-text-color' ) );
 
 					if ( $drag_elem.data( 'end-icon' ) ) {
+
 						if ( $drag_elem.data( 'start-icon' ) )
 							$drag_elem.removeClass( 'icon-' + $drag_elem.data( 'start-icon' ) );
 
 						$drag_elem.addClass( 'icon-' + $drag_elem.data( 'end-icon' ) );
+
+						if ( $drag_elem.find( 'span' ).data( 'top-end' ) )
+							$drag_elem.find( 'span' ).css( 'top', $drag_elem.find( 'span' ).data( 'top-end' ) );
+
+						if ( $drag_elem.find( 'span' ).data( 'right-end' ) )
+							$drag_elem.find( 'span' ).css( 'right', $drag_elem.find( 'span' ).data( 'right-end' ) );
 					}
 
 					// Event before unlock
@@ -131,10 +150,14 @@
 		face: {
 			// todo image face
 			image: '',
-			_top: '',
-			_right: '',
+			_top_start: '',
+			_right_start: '',
+			_top_end: '',
+			_right_end: '',
 			entypo_start: '',
-			entypo_end: ''
+			entypo_end: '',
+			text_color_start: '',
+			text_color_end: ''
 		},
 
 	};
