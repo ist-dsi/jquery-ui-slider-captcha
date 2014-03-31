@@ -17,7 +17,7 @@
 			// Start slider criation
 			$this.addClass( 'slider_captcha' ).width( s.styles.width ).height( s.styles.height ).css( 'background', s.styles.backgroundColor );
 
-			if ( s.type == "filled") {
+			if ( "filled" == s.type ) {
 				$this.append(
 					$( '<span>' ).append( $( '<span>' ).text( s.hintText ) ).data( 'animation-type', s.textFeedbackAnimation ).data( 'text-color-unlocked', s.styles.unlockTextColor ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor } ) ).append(
 					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobColor, 'left': s.styles.height } ).height( s.styles.height ).append(
@@ -73,7 +73,7 @@
 							$feedback_elem.css( 'left', feedback_elem_x );
 						} else if( 'swipe' == $feedback_elem.parent().data( 'animation-type' ) ) {
 							// swipe
-							feedback_elem_x = feedback_elem_x = ( ( slider_elem_coord.width - feedback_elem_coord.width ) / 2 < ui.offset.left ) ? ui.offset.left : ( slider_elem_coord.width - feedback_elem_coord.width ) / 2;
+							feedback_elem_x = ( ( slider_elem_coord.width - feedback_elem_coord.width ) / 2 < ui.offset.left ) ? ui.offset.left : ( slider_elem_coord.width - feedback_elem_coord.width ) / 2;
 							$feedback_elem.css( 'left', feedback_elem_x );
 						}
 					
@@ -126,7 +126,7 @@
 					}
 
 					// Event before unlock
-					if ( events['beforeUnlock'] && typeof( events['beforeUnlock'] ) == "function" )
+					if ( events['beforeUnlock'] && "function" == typeof( events['beforeUnlock'] ) )
 						events['beforeUnlock'].apply();
 
 					if( s.textAfterUnlock.length )
@@ -137,7 +137,7 @@
 					$drag_elem.addClass( 'swipe_ended' ).css( { 'left': 'auto', 'background': $drop_elem.data( 'disabled-knob-color' ) } ).draggable({ disabled: true });
 
 					// Event after unlock
-					if ( events['afterUnlock'] && typeof( events['afterUnlock'] ) == "function" )
+					if ( events['afterUnlock'] &&  "function" == typeof( events['afterUnlock'] ) )
 						events['afterUnlock'].apply();
 
 					if ( $form.length ) {
@@ -147,7 +147,7 @@
 						
 						$form.find( 'input[type="submit"]' ).removeAttr( 'disabled' ).click( function () {
 							// Event before submit
-							if ( events['beforeSubmit'] && typeof( events['beforeSubmit'] ) == "function" )
+							if ( events['beforeSubmit'] &&  "function" == typeof( events['beforeSubmit'] ) )
 								events['beforeSubmit'].apply();
 
 						});
@@ -157,6 +157,10 @@
 					}
 				}
 			})
+		});
+
+		$( window ).resize( function () {
+
 		});
 	};
 
