@@ -1,0 +1,47 @@
+// Vars
+$default-rect-radius: 3px
+$slider-height: 46px
+
+// Mixin and Functions
+=reset-box-sizing()
+	-moz-box-sizing: border-box
+	-webkit-box-sizing: border-box
+	-ms-box-sizing: border-box
+	box-sizing: border-box
+
+=rect-radius($radius: $default-rect-radius)
+	+rect-left-radius($radius)
+	+rect-right-radius($radius)
+
+=rect-left-radius($radius: $default-rect-radius)
+	-moz-border-top-left-radius: $radius
+	-moz-border-bottom-left-radius: $radius
+	-webkit-border-top-left-radius: $radius
+	-webkit-border-bottom-left-radius: $radius
+	
+	border-radius-top-left: $radius
+	border-radius-bottom-left: $radius
+
+=rect-right-radius($radius: $default-rect-radius)
+	-moz-border-top-right-radius: $radius
+	-moz-border-bottom-right-radius: $radius
+	-webkit-border-top-right-radius: $radius
+	-webkit-border-bottom-right-radius: $radius
+	
+	border-radius-top-right: $radius
+	border-radius-bottom-right: $radius
+
+=transition($type, $duration: 1s, $timing-function: ease)
+	-webkit-transition: $type $duration $timing-function
+	-moz-transition: $type $duration $timing-function
+	-ms-transition: $type $duration $timing-function
+	-o-transition: $type $duration $timing-function
+	transition: $type $duration $timing-function
+
+=text-not-selectable()
+	-webkit-touch-callout: none
+	-webkit-user-select: none
+	-khtml-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none

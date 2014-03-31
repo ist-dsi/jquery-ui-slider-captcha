@@ -4,6 +4,14 @@
 
 		var settings = $.extend( true, {}, $.fn.sliderCaptcha.defaults, options );
 
+		if ( settings && 'normal' != settings.type && 'filled' != settings.type ) {
+			settings.type = 'normal';
+		}
+
+		if ( settings && 'overlap' != settings.textFeedbackAnimation && 'swipe_overlap' != settings.textFeedbackAnimation && 'swipe' != settings.textFeedbackAnimation ) {
+			settings.textFeedbackAnimation = 'swipe';
+		}
+
 		return this.each(function() {
 
 			var s = settings, 
@@ -143,7 +151,7 @@
 					if ( $form.length ) {
 
 						if ( events['validateOnServer'] )
-							$form.append( $( '<input>' ).attr( 'type', 'hidden' ).attr( 'name', 'slider_captcha_validated' ).val( 1 ) );
+							$form.append( $( '<input>' ).attr( 'type', 'hidden' ).attr( 'name', events['validateOnServerParamName'] ).val( 1 ) );
 						
 						$form.find( 'input[type="submit"]' ).removeAttr( 'disabled' ).click( function () {
 							// Event before submit
@@ -190,7 +198,8 @@
 			afterUnlock: function() {},
 			beforeSubmit: function() {},
 			submitAfterUnlock: 0,
-			validateOnServer: 0
+			validateOnServer: 0,
+			validateOnServerParamName: 'slider_captcha_validated'
 		},
 		
 		face: {

@@ -29,7 +29,7 @@
 <script src="js/slider-captcha.js?ver=0.1"></script>
 <script>
 	$(document).ready(function () {
-		$( '#slider' ).sliderCaptcha({ 
+		$( '#slider' ).sliderCaptcha({
 			face: {
 				entypoStart: 'plus',
 				entypoEnd: 'stop'
@@ -107,7 +107,8 @@
 					console.log("beforeSubmit event");
 				},
 				submitAfterUnlock: 0,
-				validateOnServer: 1
+				validateOnServer: 1,
+				validateOnServerParamName: "my_form_param_name"
 			},
 			type: "filled",
 			face: {
