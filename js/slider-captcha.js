@@ -149,7 +149,6 @@
 							// Event before submit
 							if ( events['beforeSubmit'] &&  "function" == typeof( events['beforeSubmit'] ) )
 								events['beforeSubmit'].apply();
-
 						});
 
 						if ( events['submitAfterUnlock'] )
@@ -158,11 +157,15 @@
 				}
 			})
 		});
-
-		$( window ).resize( function () {
-
-		});
 	};
+
+	$( window ).resize( function () {
+
+		$( '.slider_captcha' ).find( 'span > span' ).parent().each( function () {
+			if( $(this).data( 'animation-type' ) )
+				$( this ).parent().find( 'span > span' ).css( 'left', $( this ).parent().get(0).getBoundingClientRect().width / 2 - $( this ).parent().find( 'span > span' ).get(0).getBoundingClientRect().width / 2 );
+		})
+	});
 
 	// Plugin defaults
 	$.fn.sliderCaptcha.defaults = {
@@ -173,12 +176,12 @@
 			disabledKnobColor: '#5CDF3B',
 			backgroundColor: '',
 			textColor: '',
-			unlockTextColor: '#fff',
+			unlockTextColor: '#000',
 			width: '100%',
 			height: ''
 		},
 
-		hintText: 'Slide to Unlock',
+		hintText: 'Swipe to Unlock',
 		hintTextSize: '',
 		textAfterUnlock: 'Unlocked',
 
