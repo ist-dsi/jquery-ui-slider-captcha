@@ -15,34 +15,31 @@
 				$form.find( 'input[type="submit"]' ).attr('disabled','disabled');
 
 			// Start slider criation
-			$this.addClass( 'slider_captcha' ).width( s.styles.width ).height( s.styles.height ).css( 'background', s.styles.backgroundcolor );
+			$this.addClass( 'slider_captcha' ).width( s.styles.width ).height( s.styles.height ).css( 'background', s.styles.backgroundColor );
 
 			if ( s.type == "filled") {
-				if ( s.textfeedbackanimation == "overlap") {
-				
-				}
 				$this.append(
-					$( '<span>' ).append( $( '<span>' ).text( s.hinttext ) ).data( 'animation-type', s.textfeedbackanimation ).data( 'text-color-unlocked', s.styles.unlocktextcolor ).data( 'text-unlocked', s.text_after_unlock ).css( { 'font-size': s.hinttext_size, 'color': s.styles.textcolor } ) ).append(
-					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobcolor, 'left': s.styles.height } ).height( s.styles.height ).append(
-					$( '<span>' ).data( 'top-end', s.face._top_end ).data( 'right-end', s.face._right_end ).addClass( 'knob_face' ).css({ 'top': s.face._top_start , 'right': s.face._right_start }) ) );
+					$( '<span>' ).append( $( '<span>' ).text( s.hintText ) ).data( 'animation-type', s.textFeedbackAnimation ).data( 'text-color-unlocked', s.styles.unlockTextColor ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor } ) ).append(
+					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobColor, 'left': s.styles.height } ).height( s.styles.height ).append(
+					$( '<span>' ).data( 'top-end', s.face.topEnd ).data( 'right-end', s.face.rightEnd ).addClass( 'knob_face' ).css({ 'top': s.face.topStart , 'right': s.face.rightStart }) ) );
 
 					$this.find( 'span > span' ).css( 'left', $this.get(0).getBoundingClientRect().width / 2 - $this.find( 'span > span' ).get(0).getBoundingClientRect().width / 2 );
 			} else {
 				$this.append(
-					$( '<span>' ).data( 'text-color-unlocked', s.styles.unlocktextcolor ).data( 'text-unlocked', s.text_after_unlock ).css( { 'font-size': s.hinttext_size, 'color': s.styles.textcolor } ).text( s.hinttext ) ).append( 
-					$( '<div>' ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobcolor ).height( s.styles.height ).append(
+					$( '<span>' ).data( 'text-color-unlocked', s.styles.unlockTextColor ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor } ).text( s.hintText ) ).append( 
+					$( '<div>' ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobColor ).height( s.styles.height ).append(
 					$( '<span>' ).addClass( 'knob_face' ) ) );
-					// _top_end and _right_end end only matters for filled slider type
+					// topEnd and rightEnd end only matters for filled slider type
 			}
 
-			if ( s.face.entypo_start.length )
-				$this.find( '.swipe-knob' ).data( 'start-icon', s.face.entypo_start ).addClass( 'icon-' + s.face.entypo_start );
+			if ( s.face.entypoStart.length )
+				$this.find( '.swipe-knob' ).data( 'start-icon', s.face.entypoStart ).addClass( 'icon-' + s.face.entypoStart );
 
-			if ( s.face.entypo_end.length )
-				$this.find( '.swipe-knob' ).data( 'end-icon', s.face.entypo_end );
+			if ( s.face.entypoEnd.length )
+				$this.find( '.swipe-knob' ).data( 'end-icon', s.face.entypoEnd );
 
-			$this.find( '.knob_face' ).css( 'color', s.face.text_color_start ).data( 'end-text-color',  s.face.text_color_end );
-			$this.data( 'events', s.events ).append( $( '<div>' ).addClass( 'knob-destiny' ).data( 'disabled-knobcolor', s.styles.disabledknobcolor ).width( s.styles.height ).height( s.styles.height ) ).data( 'form', $form);
+			$this.find( '.knob_face' ).css( 'color', s.face.textColorStart ).data( 'end-text-color',  s.face.textColorEnd );
+			$this.data( 'events', s.events ).append( $( '<div>' ).addClass( 'knob-destiny' ).data( 'disabled-knob-color', s.styles.disabledKnobColor ).width( s.styles.height ).height( s.styles.height ) ).data( 'form', $form);
 
 
 			// Finished slider criation
@@ -132,12 +129,12 @@
 					if ( events['beforeUnlock'] && typeof( events['beforeUnlock'] ) == "function" )
 						events['beforeUnlock'].apply();
 
-					if( s.text_after_unlock.length )
+					if( s.textAfterUnlock.length )
 						$slider_text_elem.text( $slider_text_elem.data( 'text-unlocked' ) );
 
 					$drop_elem.droppable( "option", "disabled", true );
 					$slider_text_elem.css( { 'z-index': 2, 'color': $slider_text_elem.data( 'text-color-unlocked' ) } );
-					$drag_elem.addClass( 'swipe_ended' ).css( { 'left': 'auto', 'background': $drop_elem.data( 'disabled-knobcolor' ) } ).draggable({ disabled: true });
+					$drag_elem.addClass( 'swipe_ended' ).css( { 'left': 'auto', 'background': $drop_elem.data( 'disabled-knob-color' ) } ).draggable({ disabled: true });
 
 					// Event after unlock
 					if ( events['afterUnlock'] && typeof( events['afterUnlock'] ) == "function" )
@@ -166,20 +163,21 @@
 	// Plugin defaults
 	$.fn.sliderCaptcha.defaults = {
 		type: 'normal',
-		textfeedbackanimation: 'overlap',
+		textFeedbackAnimation: 'overlap',
 		styles: {
-			knobcolor: '',
-			disabledknobcolor: '#5CDF3B',
-			backgroundcolor: '',
-			textcolor: '',
-			unlocktextcolor: '#fff',
+			knobColor: '',
+			disabledKnobColor: '#5CDF3B',
+			backgroundColor: '',
+			textColor: '',
+			unlockTextColor: '#fff',
 			width: '100%',
 			height: ''
 		},
 
-		hinttext: 'Slide to Unlock',
-		hinttext_size: '',
-		text_after_unlock: 'You rock!',
+		hintText: 'Slide to Unlock',
+		hintTextSize: '',
+		textAfterUnlock: 'Unlocked',
+
 		events: {
 			beforeUnlock: function() {},
 			afterUnlock: function() {},
@@ -191,16 +189,16 @@
 		face: {
 			// todo image face
 			image: '',
-			_top_start: '',
-			_right_start: '',
-			_top_end: '',
-			_right_end: '',
-			entypo_start: '',
-			entypo_end: '',
-			text_color_start: '',
-			text_color_end: ''
+
+			entypoStart: '',
+			topStart: '',
+			rightStart: '',
+			textColorStart: '',
+
+			entypoEnd: '',
+			topEnd: '',
+			rightEnd: '',
+			textColorEnd: ''
 		},
-
 	};
-
 }( jQuery ));

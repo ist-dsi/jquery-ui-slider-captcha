@@ -31,18 +31,18 @@
 	$(document).ready(function () {
 		$( '#slider' ).sliderCaptcha({ 
 			face: {
-				entypo_start: 'plus',
-				entypo_end: 'stop'
+				entypoStart: 'plus',
+				entypoEnd: 'stop'
 			}
 		});
 		$( '#slider_1' ).sliderCaptcha({
 			face: {
-				entypo_start: 'plus',
+				entypoStart: 'plus',
 			}
 		});
 		$( '#slider_2' ).sliderCaptcha({
 			face: {
-				entypo_end: 'plus'
+				entypoEnd: 'plus'
 			},
 			styles: {
 					unlocktextcolor: "#5CDF3B"
@@ -51,31 +51,31 @@
 		$( '#slider_3' ).sliderCaptcha();
 
 		$( '#slider_filled' ).sliderCaptcha({ 
-			textfeedbackanimation: 'swipe',
+			textFeedbackAnimation: 'swipe',
 			type: "filled",
 			face: {
-				entypo_start: 'plus',
-				entypo_end: 'stop',
-				_top_start: 8,
-				_right_start: 18
+				entypoStart: 'plus',
+				entypoEnd: 'stop',
+				topStart: 8,
+				rightStart: 18
 			}
 		});
 		$( '#slider_1_filled' ).sliderCaptcha({
-			textfeedbackanimation: 'swipe_overlap',
+			textFeedbackAnimation: 'swipe_overlap',
 			type: "filled",
 			face: {
-				entypo_start: 'plus',
-				_top_start: 8,
-				_right_start: 18
+				entypoStart: 'plus',
+				topStart: 8,
+				rightStart: 18
 			}
 		});
 		$( '#slider_2_filled' ).sliderCaptcha({
-			textfeedbackanimation: 'swipe',
+			textFeedbackAnimation: 'swipe',
 			type: "filled",
 			face: {
-				entypo_end: 'plus',
-				_top_end: 1,
-				_right_end: 1
+				entypoEnd: 'plus',
+				topEnd: 1,
+				rightEnd: 1
 			}
 		});
 		$( '#slider_3_filled' ).sliderCaptcha({
@@ -83,16 +83,16 @@
 		});
 
 		$( '#slider_contained' ).sliderCaptcha({
-			textfeedbackanimation: 'swipe',
-			hinttext: "Arrastar para validar",
-			hinttext_size: '10px',
-			text_after_unlock: 'Validado',
+			textFeedbackAnimation: 'swipe',
+			hintText: "Arrastar para validar",
+			hintTextSize: '10px',
+			textAfterUnlock: 'Validado',
 			styles: {
-				knobcolor: "#5CDF3B",
-				disabledknobcolor: "#000000",
-				backgroundcolor: "#444",
-				textcolor: "#A0A",
-				unlocktextcolor: "#fff",
+				knobColor: "#5CDF3B",
+				disabledKnobColor: "#000000",
+				backgroundColor: "#444",
+				textColor: "#A0A",
+				unlockTextColor: "#fff",
 				width: '90%',
 				height: '30px'
 			},
@@ -111,11 +111,11 @@
 			},
 			type: "filled",
 			face: {
-				_top_start: -3,
-				_right_start: 6,
-				entypo_start: 'pause',
-				text_color_start: '#000',
-				text_color_end: '#faf'
+				topStart: -3,
+				rightStart: 6,
+				entypoStart: 'pause',
+				textColorStart: '#000',
+				textColorEnd: '#faf'
 			}
 		});
 	});
