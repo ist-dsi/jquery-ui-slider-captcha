@@ -15,6 +15,7 @@ The slider is totaly functional in all modern browsers. Slider is full responsiv
 
 This plugin requires jQuery, jQuery UI, jQuery UI Touch Punch Improved. We suggest that this resources should be include at the end of head tag. The plugin css should be loaded in the same way. Note that some of listed resources have dependecies and should be loaded in the right position.
 
+```html
 <link rel="stylesheet" href="/path/to/slider-captcha.css" media="screen">
 
 <script src="/path/to/jquery.min.js"></script>
@@ -28,7 +29,7 @@ This plugin requires jQuery, jQuery UI, jQuery UI Touch Punch Improved. We sugge
 <script src="/path/to/jquery.ui.touch-punch-improved.js"></script>
 
 <script src="/path/to/slider-captcha.js"></script>
-
+```
 
 ## Initialization
 
@@ -114,6 +115,8 @@ All the options demystified:
 
 ## Changelog
 
+### 0.1
+ - Initial release.
 
 ## License
 
