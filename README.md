@@ -38,7 +38,9 @@ $(document).ready(function() {
 
 Full customization
 
-$(document).ready(function() {
+All available options. The following example uses the default options.
+
+$(document).ready( function () {
 	$( '#slider' ).sliderCaptcha({
 		type: 'normal',
 		textFeedbackAnimation: 'overlap',
@@ -78,25 +80,33 @@ $(document).ready(function() {
 })
 
 
+Options
+
+All the options demystified:
+
+	type: (default 'normal' ) The options 'normal' and 'filled' are eligible. The latter causes the slider to fill the slider bar while user control it.
+
+	textFeedbackAnimation: (default 'overlap' ) Swipe out, pushed or overlaped 
+	
+	styles: (default { knobColor: '', disabledKnobColor: '#5CDF3B', backgroundColor: '', textColor: '', unlockTextColor: '#000', width: '100%', height: '' } )
+
+	hintText (default 'Swipe to Unlock') Text to be displayed in initial state.
+
+	hintTextSize '' (default '') Hint text font size.
+	
+	textAfterUnlock (default 'Unlocked') Text to be displayed after the slider has been unlocked.
+
+	face (default { entypoStart: '', topStart: '', rightStart: '', textColorStart: '', entypoEnd: '', topEnd: '', rightEnd: '', textColorEnd: '' }) All the options 
+
+	events (default { beforeUnlock: function() {}, afterUnlock: function() {}, beforeSubmit: function() {}, submitAfterUnlock: 0, validateOnServer: 0, validateOnServerParamName: 'slider_captcha_validated' }) 
+
 Examples
 
 
 
-Options
-
-	type: (default normal)
-	textFeedbackAnimation: (default overlap)
-	styles: (default ) {
-			knobColor: '',
-			disabledKnobColor: '#5CDF3B',
-			backgroundColor: '',
-			textColor: '',
-			unlockTextColor: '#000',
-			width: '100%',
-			height: ''
-		},
-
 License
 
+This plugin is available under the GPLv3 license (https://www.gnu.org/copyleft/gpl.html).
 
 Changelog
+
