@@ -192,16 +192,6 @@
 		hintText: 'Swipe to Unlock',
 		hintTextSize: '',
 		textAfterUnlock: 'Unlocked',
-
-		events: {
-			beforeUnlock: function() {},
-			afterUnlock: function() {},
-			beforeSubmit: function() {},
-			submitAfterUnlock: 0,
-			validateOnServer: 0,
-			validateOnServerParamName: 'slider_captcha_validated'
-		},
-		
 		face: {
 			// todo image face
 			image: '',
@@ -216,5 +206,13 @@
 			rightEnd: '',
 			textColorEnd: ''
 		},
+		events: {
+			beforeUnlock: function() {},
+			afterUnlock: function() {},
+			beforeSubmit: function() {},
+			submitAfterUnlock: 0,
+			validateOnServer: 0,
+			validateOnServerParamName: 'slider_captcha_validated'
+		}
 	};
 }( jQuery ));
