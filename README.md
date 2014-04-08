@@ -13,7 +13,7 @@ The slider is totaly functional in all modern browsers. Slider is full responsiv
 
 ## Usage
 
-This plugin requires jQuery, jQuery UI, jQuery UI Touch Punch Improved. We suggest that this resources should be include at the end of head tag. The plugin css should be loaded in the same way. Note that some of listed resources have dependecies and should be loaded in the right position.
+This plugin requires jQuery, jQuery UI, jQuery UI Touch Punch Improved. We suggest that this resources should be include at the end of head tag. The plugin css should be loaded in the same way. Note that some of listed resources have dependecies and should be loaded in the correct position.
 
 ```html
 <link rel="stylesheet" href="/path/to/slider-captcha.css" media="screen">
@@ -28,7 +28,7 @@ This plugin requires jQuery, jQuery UI, jQuery UI Touch Punch Improved. We sugge
 
 <script src="/path/to/jquery.ui.touch-punch-improved.js"></script>
 
-<script src="/path/to/slider-captcha.js"></script>
+<script src="/path/to/slider-captcha.min.js"></script>
 ```
 
 ## Initialization
@@ -104,7 +104,7 @@ All the options demystified:
 
 	`face`: (default `{ entypoStart: '', topStart: '', rightStart: '', textColorStart: '', entypoEnd: '', topEnd: '', rightEnd: '', textColorEnd: '' }`) Slider knob options, including face content (entypo font) , color and offset.
 
-	`events`: (default `{ beforeUnlock: function() {}, afterUnlock: function() {}, beforeSubmit: function() {}, submitAfterUnlock: 0, validateOnServer: 0, validateOnServerParamName: 'slider_captcha_validated' }`) Events options, like functions to be called before and after unlock and before submit. Here can be configured if the validation will be performed in server (`validateOnServer`) and with which param name in form request  should be used (`validateOnServerParamName`), and if submit should be performed after the unlock (`submitAfterUnlock`).
+	`events`: (default `{ beforeUnlock: function() {}, afterUnlock: function() {}, beforeSubmit: function() {}, submitAfterUnlock: 0, validateOnServer: 0, validateOnServerParamName: 'slider_captcha_validated' }`) Events options, like functions to be called before and after unlock and before submit. Here can be activated if the validation will be performed in server (`validateOnServer`) and with which param name in form request should be used (`validateOnServerParamName`), and if submit should be performed after the unlock (`submitAfterUnlock`).
 
 
 ## Examples
@@ -113,7 +113,12 @@ All the options demystified:
 
 ```javascript
 $(document).ready(function() {
-	$( '#slider' ).sliderCaptcha();
+	$( '#slider' ).sliderCaptcha({
+		face: {
+			entypoStart: 'plus',
+			entypoEnd: 'stop'
+		}
+	});
 })
 ```
 
@@ -121,7 +126,59 @@ $(document).ready(function() {
 
 ```javascript
 $(document).ready(function() {
-	$( '#slider' ).sliderCaptcha();
+	$( '#slider_filled' ).sliderCaptcha({
+		type: "filled",
+		styles: {
+			width: '300px'
+		}
+	});
+})
+```
+
+### Example 3
+
+```javascript
+$(document).ready(function() {
+	$( '#slider_full' ).sliderCaptcha({
+		type: "filled",
+		textFeedbackAnimation: 'swipe_overlap',
+		hintText: "Swipe to submit",
+		hintTextSize: '12px',
+		textAfterUnlock: 'You can submit now',
+		styles: {
+			knobColor: "#5CDF3B",
+			disabledKnobColor: "#000000",
+			backgroundColor: "#444",
+			textColor: "#fff",
+			unlockTextColor: "#fff",
+			width: '90%',
+			height: '35px'
+		},
+		face: {
+			topStart: 4,
+			rightStart: 9,
+			entypoStart: 'right-thin',
+			textColorStart: '#ddd',
+			textColorEnd: '#5CDF3B',
+			topEnd: 3,
+			rightEnd: 9,				
+			entypoEnd: 'flag'
+		},
+		events: {
+			afterUnlock: function () {
+				console.log("afterUnlock event");
+			},
+			beforeUnlock: function () {
+				console.log("afterSubmit event");
+			},
+			beforeSubmit: function () {
+				console.log("beforeSubmit event");
+			},
+			submitAfterUnlock: 0,
+			validateOnServer: 1,
+			validateOnServerParamName: "my_form_param_name"
+		}
+	});
 })
 ```
 

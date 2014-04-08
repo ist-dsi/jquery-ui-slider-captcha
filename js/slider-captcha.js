@@ -1,3 +1,15 @@
+/*
+ * Slider Captcha - jQuery plugin for Slider Captcha
+ *
+ * Copyright (c) 2014 DSI - Técnico Lisboa
+ *
+ * Licensed under the GPLv3 license:
+ *   https://www.gnu.org/copyleft/gpl.html
+ *
+ * Version:  0.1
+ *
+ */
+
 (function( $ ) {
 
 	$.fn.sliderCaptcha = function( options ) {
@@ -97,9 +109,6 @@
 						, 200);
 
 					}
-				},
-				start: function( event, ui ) {
-					console.log( 'Started' );
 				}
 			});
 

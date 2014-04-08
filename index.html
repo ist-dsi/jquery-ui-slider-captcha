@@ -28,73 +28,43 @@
 
 <script src="js/slider-captcha.js?ver=0.1"></script>
 <script>
-	$(document).ready(function () {
+	$(document).ready(function() {
 		$( '#slider' ).sliderCaptcha({
 			face: {
 				entypoStart: 'plus',
 				entypoEnd: 'stop'
 			}
 		});
-		$( '#slider_1' ).sliderCaptcha({
-			face: {
-				entypoStart: 'plus',
-			}
-		});
-		$( '#slider_2' ).sliderCaptcha({
-			face: {
-				entypoEnd: 'plus'
-			},
-			styles: {
-					unlocktextcolor: "#5CDF3B"
-				}
-		});		
-		$( '#slider_3' ).sliderCaptcha();
-
-		$( '#slider_filled' ).sliderCaptcha({ 
-			textFeedbackAnimation: 'swipe',
+		$( '#slider_filled' ).sliderCaptcha({
 			type: "filled",
-			face: {
-				entypoStart: 'plus',
-				entypoEnd: 'stop',
-				topStart: 8,
-				rightStart: 18
+			"styles": {
+				width: '300px'
 			}
 		});
-		$( '#slider_1_filled' ).sliderCaptcha({
+		$( '#slider_full' ).sliderCaptcha({
+			type: "filled",
 			textFeedbackAnimation: 'swipe_overlap',
-			type: "filled",
-			face: {
-				entypoStart: 'plus',
-				topStart: 8,
-				rightStart: 18
-			}
-		});
-		$( '#slider_2_filled' ).sliderCaptcha({
-			textFeedbackAnimation: 'swipe',
-			type: "filled",
-			face: {
-				entypoEnd: 'plus',
-				topEnd: 1,
-				rightEnd: 1
-			}
-		});
-		$( '#slider_3_filled' ).sliderCaptcha({
-			type: "filled"
-		});
-
-		$( '#slider_contained' ).sliderCaptcha({
-			textFeedbackAnimation: 'swipe',
-			hintText: "Arrastar para validar",
-			hintTextSize: '10px',
-			textAfterUnlock: 'Validado',
+			hintText: "Swipe to submit",
+			hintTextSize: '12px',
+			textAfterUnlock: 'You can submit now',
 			styles: {
 				knobColor: "#5CDF3B",
 				disabledKnobColor: "#000000",
 				backgroundColor: "#444",
-				textColor: "#A0A",
+				textColor: "#fff",
 				unlockTextColor: "#fff",
 				width: '90%',
-				height: '30px'
+				height: '35px'
+			},
+			face: {
+				topStart: 4,
+				rightStart: 9,
+				entypoStart: 'right-thin',
+				textColorStart: '#ddd',
+				textColorEnd: '#5CDF3B',
+				topEnd: 3,
+				rightEnd: 9,				
+				entypoEnd: 'flag'
 			},
 			events: {
 				afterUnlock: function () {
@@ -109,38 +79,22 @@
 				submitAfterUnlock: 0,
 				validateOnServer: 1,
 				validateOnServerParamName: "my_form_param_name"
-			},
-			type: "filled",
-			face: {
-				topStart: -3,
-				rightStart: 6,
-				entypoStart: 'pause',
-				textColorStart: '#000',
-				textColorEnd: '#faf'
 			}
 		});
-	});
+	})
 </script>
 </head>
 <body>
 	<main>
-		<h3>Slider in a fluid container</h4>
+		<h3>Examples</h3>
+		<h4>Almost normal slider</h4>
 		<div id="slider"></div>
-		<div id="slider_1"></div>
-		<div id="slider_2"></div>
-		<div id="slider_3"></div>
-
-		<h3>Slider in a fluid container - type 2</h4>
+		<h4>Filled slider</h4>
 		<div id="slider_filled"></div>
-		<div id="slider_1_filled"></div>
-		<div id="slider_2_filled"></div>
-		<div id="slider_3_filled"></div>
-
-		<h3>Slider in a fixed container</h4>
+		<h4>Custom slider in a form</h4>
 		<form method="post" action="#">
-			<input type="text" name="title" />
 			<div style="width: 250px;">
-				<div id="slider_contained"></div>
+				<div id="slider_full"></div>
 			</div>
 			<input type="submit"/>
 		</form>
