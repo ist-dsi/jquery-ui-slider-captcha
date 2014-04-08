@@ -37,7 +37,7 @@
 		});
 		$( '#slider_filled' ).sliderCaptcha({
 			type: "filled",
-			"styles": {
+			styles: {
 				width: '300px'
 			}
 		});
@@ -76,11 +76,57 @@
 				beforeSubmit: function () {
 					console.log("beforeSubmit event");
 				},
-				submitAfterUnlock: 0,
+				noSubmit: function() {
+					console.log("noSubmit event");
+				},				
+				submitAfterUnlock: 1,
 				validateOnServer: 1,
 				validateOnServerParamName: "my_form_param_name"
 			}
 		});
+		$( '#slider_full_1' ).sliderCaptcha({
+			type: "filled",
+			textFeedbackAnimation: 'swipe_overlap',
+			hintText: "Swipe to submit",
+			hintTextSize: '12px',
+			textAfterUnlock: 'You can submit now',
+			styles: {
+				knobColor: "#5CDF3B",
+				disabledKnobColor: "#000000",
+				backgroundColor: "#444",
+				textColor: "#fff",
+				unlockTextColor: "#fff",
+				width: '90%',
+				height: '35px'
+			},
+			face: {
+				topStart: 4,
+				rightStart: 9,
+				entypoStart: 'right-thin',
+				textColorStart: '#ddd',
+				textColorEnd: '#5CDF3B',
+				topEnd: 3,
+				rightEnd: 9,				
+				entypoEnd: 'flag'
+			},
+			events: {
+				afterUnlock: function () {
+					console.log("afterUnlock event");
+				},
+				beforeUnlock: function () {
+					console.log("afterSubmit event");
+				},
+				beforeSubmit: function () {
+					console.log("beforeSubmit event");
+				},
+				noSubmit: function() {
+					console.log("noSubmit event");
+				},
+				submitAfterUnlock: 1,
+				validateOnServer: 1,
+				validateOnServerParamName: "my_form_param_name"
+			}
+		});		
 	})
 </script>
 </head>
@@ -92,11 +138,22 @@
 		<h4>Filled slider</h4>
 		<div id="slider_filled"></div>
 		<h4>Custom slider in a form</h4>
-		<form method="post" action="#">
+		<form method="post" action="/teste.php">
+			<div>
+				<input name="email" placeholder="Insira o seu email" class="input_box" type="email" id="email" pattern=".*@.*" required>
+			</div>
 			<div style="width: 250px;">
 				<div id="slider_full"></div>
 			</div>
 			<input type="submit"/>
 		</form>
+		<form method="post" action="/teste.php">
+			<div>
+				<input name="email" placeholder="Insira o seu email" class="input_box" type="email" id="email" pattern=".*@.*" required>
+			</div>
+			<div style="width: 250px;">
+				<div id="slider_full_1"></div>
+			</div>
+		</form>		
 </body>
 </html>

@@ -24,30 +24,35 @@
 			settings.textFeedbackAnimation = 'swipe';
 		}
 
-		return this.each(function() {
+		return this.each( function() {
 
 			var s = settings, 
 				$this = $( this ),
 				$form = $this.closest( "form" );
 
-			// Disable input submit form
-			if ( $form.length && $form.find( 'input[type="submit"]' ) )
-				$form.find( 'input[type="submit"]' ).attr('disabled','disabled');
+			// Disable submit button if submit after unlock
+			if ( $form.length && $form.find( 'input[type="submit"]' ) && s.events.submitAfterUnlock ) {
+					$form.find( 'input[type="submit"]' ).hide();
+			} else {
+				// Disable input submit form
+				if ( $form.length && $form.find( 'input[type="submit"]' ) )
+					$form.find( 'input[type="submit"]' ).attr('disabled','disabled');
+			}
 
 			// Start slider criation
-			$this.addClass( 'slider_captcha' ).width( s.styles.width ).height( s.styles.height ).css( 'background', s.styles.backgroundColor );
+			$this.addClass( 'slider_captcha' ).width( s.styles.width ).height( s.styles.height ).css( 'background', s.styles.backgroundColor ).data( 'options', s );
 
 			if ( "filled" == s.type ) {
 				$this.append(
 					$( '<span>' ).append( $( '<span>' ).text( s.hintText ) ).data( 'animation-type', s.textFeedbackAnimation ).data( 'text-color-unlocked', s.styles.unlockTextColor ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor } ) ).append(
-					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobColor, 'left': s.styles.height } ).height( s.styles.height ).append(
+					$( '<div>' ).data( 'original-left', s.styles.height ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobColor, 'left': s.styles.height } ).height( s.styles.height ).append(
 					$( '<span>' ).data( 'top-end', s.face.topEnd ).data( 'right-end', s.face.rightEnd ).addClass( 'knob_face' ).css({ 'top': s.face.topStart , 'right': s.face.rightStart }) ) );
 
 					$this.find( 'span > span' ).css( 'left', $this.get(0).getBoundingClientRect().width / 2 - $this.find( 'span > span' ).get(0).getBoundingClientRect().width / 2 );
 			} else {
 				$this.append(
 					$( '<span>' ).data( 'text-color-unlocked', s.styles.unlockTextColor ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor } ).text( s.hintText ) ).append( 
-					$( '<div>' ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobColor ).height( s.styles.height ).append(
+					$( '<div>' ).data( 'original-left', 0 ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobColor ).width( s.styles.height ).height( s.styles.height ).append(
 					$( '<span>' ).addClass( 'knob_face' ) ) );
 					// topEnd and rightEnd end only matters for filled slider type
 			}
@@ -63,7 +68,6 @@
 
 
 			// Finished slider criation
-
 			$this.find( '.swipe-knob' ).draggable({
 				containment: "parent", 
 				scrollSpeed: 70,
@@ -107,7 +111,6 @@
 							'left': $( this ).parent().get(0).getBoundingClientRect().width / 2 - $( this ).parent().find( 'span > span' ).get(0).getBoundingClientRect().width / 2
 						}
 						, 200);
-
 					}
 				}
 			});
@@ -123,6 +126,10 @@
 						$drag_elem = $( ui.draggable ),
 						$drop_elem = $( this ),
 						$form = $slider_elem.data( 'form' );
+
+						options = $slider_elem.data( 'options' );
+
+					$form.find( ':focus' ).blur();
 
 
 					if ( $drag_elem.find( '.knob_face' ).data( 'end-text-color' ) )
@@ -168,8 +175,22 @@
 								events['beforeSubmit'].apply();
 						});
 
-						if ( events['submitAfterUnlock'] )
-							$form.submit();
+						if ( events['submitAfterUnlock'] ) {
+
+							if ( !$form.find( 'input[type=submit]' ).length )
+								$form.append( $('<input>').attr( "type", "submit" ).hide() )
+
+							$form.find( 'input[type=submit]' ).click();
+
+							if ( $form.find( ':focus' ).length ) {
+
+								if ( events['noSubmit'] &&  "function" == typeof( events['noSubmit'] ) ) {
+									events['noSubmit'].apply();
+								}
+
+								$slider_elem.empty().sliderCaptcha( options );
+							}
+						}
 					}
 				}
 			})
@@ -219,6 +240,7 @@
 			beforeUnlock: function() {},
 			afterUnlock: function() {},
 			beforeSubmit: function() {},
+			noSubmit: function() {},
 			submitAfterUnlock: 0,
 			validateOnServer: 0,
 			validateOnServerParamName: 'slider_captcha_validated'
