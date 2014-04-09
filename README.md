@@ -188,6 +188,10 @@ $(document).ready(function() {
 
 ## Changelog
 
+### 0.2
+	- IE browsers issues resolved
+	- Text animation code refactorization
+
 ### 0.1
  - Initial release.
 
