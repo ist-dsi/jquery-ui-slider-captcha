@@ -174,6 +174,9 @@ $(document).ready(function() {
 			beforeSubmit: function () {
 				console.log("beforeSubmit event");
 			},
+			noSubmit: function () {
+				console.log("noSubmit event");
+			},			
 			submitAfterUnlock: 0,
 			validateOnServer: 1,
 			validateOnServerParamName: "my_form_param_name"
