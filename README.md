@@ -90,21 +90,21 @@ $(document).ready( function () {
 
 All the options demystified:
 
-	`type`: (default `'normal'`) The options `'normal'` and 'filled' are eligible. The latter causes the slider to fill the slider bar while user control it.
+`type`: (default `'normal'`) The options `'normal'` and 'filled' are eligible. The latter causes the slider to fill the slider bar while user control it.
 
-	`textFeedbackAnimation`: (default `'overlap'`) This option is only available with the 'filled' slider type. Push and swipe out the feedback text in slider bar (`'swipe'`), push the feedback text in slider bar (`'swipe_overlap'`) or overlap text feedback (`'overlap'`).
-	
-	`styles`: (default `{ knobColor: '', disabledKnobColor: '#5CDF3B', backgroundColor: '', textColor: '', unlockTextColor: '#000', width: '100%', height: '' }` ) General styles, including color, text and dimensions options.
+`textFeedbackAnimation`: (default `'overlap'`) This option is only available with the 'filled' slider type. Push and swipe out the feedback text in slider bar (`'swipe'`), push the feedback text in slider bar (`'swipe_overlap'`) or overlap text feedback (`'overlap'`).
 
-	`hintText`: (default `'Swipe to Unlock'`) Text to be displayed in initial state.
+`styles`: (default `{ knobColor: '', disabledKnobColor: '#5CDF3B', backgroundColor: '', textColor: '', unlockTextColor: '#000', width: '100%', height: '' }` ) General styles, including color, text and dimensions options.
 
-	`hintTextSize`: '' (default `''`) Hint text font size.
-	
-	`textAfterUnlock`: (default `'Unlocked'`) Text to be displayed after the slider has been unlocked.
+`hintText`: (default `'Swipe to Unlock'`) Text to be displayed in initial state.
 
-	`face`: (default `{ entypoStart: '', topStart: '', rightStart: '', textColorStart: '', entypoEnd: '', topEnd: '', rightEnd: '', textColorEnd: '' }`) Slider knob options, including face content (entypo font) , color and offset.
+`hintTextSize`: '' (default `''`) Hint text font size.
 
-	`events`: (default `{ beforeUnlock: function() {}, afterUnlock: function() {}, beforeSubmit: function() {}, submitAfterUnlock: 0, validateOnServer: 0, validateOnServerParamName: 'slider_captcha_validated' }`) Events options, like functions to be called before and after unlock and before submit. Here can be activated if the validation will be performed in server (`validateOnServer`) and with which param name in form request should be used (`validateOnServerParamName`), and if submit should be performed after the unlock (`submitAfterUnlock`).
+`textAfterUnlock`: (default `'Unlocked'`) Text to be displayed after the slider has been unlocked.
+
+`face`: (default `{ entypoStart: '', topStart: '', rightStart: '', textColorStart: '', entypoEnd: '', topEnd: '', rightEnd: '', textColorEnd: '' }`) Slider knob options, including face content (entypo font) , color and offset.
+
+`events`: (default `{ beforeUnlock: function() {}, afterUnlock: function() {}, beforeSubmit: function() {}, noSubmit: function() {} ,submitAfterUnlock: 0, validateOnServer: 0, validateOnServerParamName: 'slider_captcha_validated' }`) Events options, like functions to be called before and after unlock and before submit. Here can be activated if the validation will be performed in server (`validateOnServer`) and with which param name in form request should be used (`validateOnServerParamName`), and if submit should be performed after the unlock (`submitAfterUnlock`).
 
 
 ## Examples
