@@ -10,7 +10,6 @@
  */
 
 .slider_captcha
-	font-family: Helvetica, Arial, sans-serif
 	font-size: 16px
 	font-weight: 400
 	text-align: center
@@ -61,11 +60,11 @@
 				vertical-align: middle
 
 			&:after
-				font-family: 'entypo'
+				font-family: 'fontello'
 				display: table-cell
 				vertical-align: middle
-				font-size: 26px
-				content: "\E766"
+				font-size: $font-face-size
+				content: "\e875"
 				cursor: move
 
 		&.swipe_ended
@@ -80,7 +79,7 @@
 				&[class*=" icon-"]:after
 					display: none
 				&:after
-					content: "\2713"
+					content: "\e812"
 
 	&.type_filled
 		left: $slider-height
@@ -108,12 +107,12 @@
 		span
 			position: absolute
 			right: 19px
-			top: 11px
+			top: 14px
 			cursor: move
 			&:after
-				font-family: 'entypo'
-				font-size: 26px
-				content: "\E766"
+				font-family: 'fontello'
+				font-size: $font-face-size
+				content: "\e875"
 			
 
 		&.swipe_ended
@@ -122,7 +121,7 @@
 			cursor: auto
 
 			span:after
-				content: "\2713"
+				content: "\e812"
 
 
 .knob-destiny
