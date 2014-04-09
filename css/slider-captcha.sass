@@ -15,9 +15,11 @@
 	text-align: center
 	color: #A3A3A3
 	background: #eee
-	display: table
+	display: inline-block
 	position: relative
+
 	overflow: hidden
+
 	width: 100%
 	height: $slider-height
 	padding: 0
@@ -27,13 +29,14 @@
 	+text-not-selectable()
 
 	span
-		display: table-cell
-		vertical-align: middle
 		cursor: default
 		position: relative
+		line-height: $slider-height
+	
+	& > span
+		margin: 0 auto
 
-
-.swipe-knob 
+.swipe-knob
 	position: absolute
 	top: 0
 	left: 0
@@ -44,6 +47,13 @@
 	background-color: #72D5EE
 	color: #fff
 	
+	
+	display: inline-block
+	overflow: hidden
+	-ms-overflow-style: hidden
+
+	+rect-radius()
+
 	&:not(.type_filled)
 
 		&[class*=" icon-"] > span:after
@@ -87,14 +97,13 @@
 		width: 100%
 		cursor: move
 
-		+rect-radius()
 		+text-not-selectable()
 
 		&[class*=" icon-"]
 			span
 				position: absolute
 				right: 19px
-				top: 11px
+				top: 0
 				cursor: move
 
 				&:after
@@ -107,7 +116,7 @@
 		span
 			position: absolute
 			right: 19px
-			top: 14px
+			top: 0
 			cursor: move
 			&:after
 				font-family: 'fontello'

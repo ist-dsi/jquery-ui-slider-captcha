@@ -100,12 +100,12 @@
 				height: '35px'
 			},
 			face: {
-				topStart: 7,
+				topStart: 0,
 				rightStart: 9,
 				entypoStart: 'right-thin',
 				textColorStart: '#ddd',
 				textColorEnd: '#5CDF3B',
-				topEnd: 7,
+				topEnd: 0,
 				rightEnd: 9,				
 				entypoEnd: 'flag'
 			},
@@ -122,7 +122,7 @@
 				noSubmit: function() {
 					console.log("noSubmit event");
 				},
-				submitAfterUnlock: 1,
+				submitAfterUnlock: 0,
 				validateOnServer: 1,
 				validateOnServerParamName: "my_form_param_name"
 			}
@@ -142,7 +142,7 @@
 			<div>
 				<input name="email" placeholder="Insira o seu email" class="input_box" type="email" id="email" pattern=".*@.*" required>
 			</div>
-			<div style="width: 250px;">
+			<div style="width: 250px;margin 0 auto;">
 				<div id="slider_full"></div>
 			</div>
 			<input type="submit"/>
