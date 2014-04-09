@@ -6,7 +6,7 @@
  * Licensed under the GPLv3 license:
  *   https://www.gnu.org/copyleft/gpl.html
  *
- * Version:  0.1
+ * Version:  0.2
  *
  */
 
@@ -44,15 +44,15 @@
 
 			if ( "filled" == s.type ) {
 				$this.append(
-					$( '<span>' ).append( $( '<span>' ).text( s.hintText ) ).data( 'animation-type', s.textFeedbackAnimation ).data( 'text-color-unlocked', s.styles.unlockTextColor ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor } ) ).append(
-					$( '<div>' ).data( 'original-left', s.styles.height ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobColor, 'left': s.styles.height } ).height( s.styles.height ).append(
-					$( '<span>' ).data( 'top-end', s.face.topEnd ).data( 'right-end', s.face.rightEnd ).addClass( 'knob_face' ).css({ 'top': s.face.topStart , 'right': s.face.rightStart }) ) );
+					$( '<span>' ).append( $( '<span>' ).text( s.hintText ).css( "line-height", s.styles.height ) ).data( 'animation-type', s.textFeedbackAnimation ).data( 'text-color-unlocked', s.styles.unlockTextColor ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor, "line-height": s.styles.height } ) ).append(
+					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobColor, 'left': s.styles.height } ).height( s.styles.height ).append(
+					$( '<span>' ).data( 'top-end', s.face.topEnd ).data( 'right-end', s.face.rightEnd ).addClass( 'knob_face' ).css({ 'top': s.face.topStart , 'right': s.face.rightStart, "line-height": s.styles.height }) ) );
 
-					$this.find( 'span > span' ).css( 'left', $this.get(0).getBoundingClientRect().width / 2 - $this.find( 'span > span' ).get(0).getBoundingClientRect().width / 2 );
+					$this.find( 'span > span' ).css( 'left', 0 );
 			} else {
 				$this.append(
 					$( '<span>' ).data( 'text-color-unlocked', s.styles.unlockTextColor ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor } ).text( s.hintText ) ).append( 
-					$( '<div>' ).data( 'original-left', 0 ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobColor ).width( s.styles.height ).height( s.styles.height ).append(
+					$( '<div>' ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobColor ).width( s.styles.height ).height( s.styles.height ).append(
 					$( '<span>' ).addClass( 'knob_face' ) ) );
 					// topEnd and rightEnd end only matters for filled slider type
 			}
@@ -83,21 +83,22 @@
 							slider_elem_coord = $slider_elem.get(0).getBoundingClientRect(),
 							$feedback_elem = $slider_elem.find( 'span > span' ),
 							feedback_elem_coord = $feedback_elem.get(0).getBoundingClientRect(),
-							feedback_elem_x;
+							$feedback_elem_parent = $slider_elem.find( 'span > span' ).parent(),
+							feedback_elem_parent = $feedback_elem_parent.get(0).getBoundingClientRect(),
+							feedback_elem_x = 0;
 
 						if ( 'swipe_overlap' == $feedback_elem.parent().data( 'animation-type' ) ) {
 							// swipe_overlap
-							if ( ( slider_elem_coord.width - feedback_elem_coord.width ) / 2 > ui.offset.left ) {
-								feedback_elem_x = ( slider_elem_coord.width - feedback_elem_coord.width ) / 2;
-							} else if ( 10 + ui.offset.left + feedback_elem_coord.width > slider_elem_coord.width ) {
-								feedback_elem_x = slider_elem_coord.width - feedback_elem_coord.width - 10;
-							} else {
-								feedback_elem_x = ui.offset.left;
+							if ( ui.offset.left + 10 + 5 + feedback_elem_parent.width > slider_elem_coord.width ) {
+								feedback_elem_x = slider_elem_coord.width - feedback_elem_parent.width - feedback_elem_parent.left - 5;
+							} else if ( feedback_elem_parent.left < ui.offset.left + 10) {
+								feedback_elem_x = ui.offset.left - feedback_elem_parent.left + 10;
 							}
+
 							$feedback_elem.css( 'left', feedback_elem_x );
 						} else if( 'swipe' == $feedback_elem.parent().data( 'animation-type' ) ) {
 							// swipe
-							feedback_elem_x = ( ( slider_elem_coord.width - feedback_elem_coord.width ) / 2 < ui.offset.left ) ? ui.offset.left : ( slider_elem_coord.width - feedback_elem_coord.width ) / 2;
+							feedback_elem_x = ( feedback_elem_parent.left < ui.offset.left + 10 ) ? ui.offset.left - feedback_elem_parent.left + 10 : 0;
 							$feedback_elem.css( 'left', feedback_elem_x );
 						}
 					
@@ -105,13 +106,8 @@
 
 				},
 				stop: function( event, ui ) {
-					if ( $( this ).parent().find( 'span > span' ).parent().data( 'animation-type' ) ) {
-
-						$( this ).parent().find( 'span > span' ).animate({
-							'left': $( this ).parent().get(0).getBoundingClientRect().width / 2 - $( this ).parent().find( 'span > span' ).get(0).getBoundingClientRect().width / 2
-						}
-						, 200);
-					}
+					if ( $( this ).parent().find( 'span > span' ).parent().data( 'animation-type' ) )
+						$( this ).parent().find( 'span > span' ).animate({ 'left': 0 }, 200);
 				}
 			});
 
@@ -196,14 +192,6 @@
 			})
 		});
 	};
-
-	$( window ).resize( function () {
-
-		$( '.slider_captcha' ).find( 'span > span' ).parent().each( function () {
-			if( $(this).data( 'animation-type' ) )
-				$( this ).parent().find( 'span > span' ).css( 'left', $( this ).parent().get(0).getBoundingClientRect().width / 2 - $( this ).parent().find( 'span > span' ).get(0).getBoundingClientRect().width / 2 );
-		})
-	});
 
 	// Plugin defaults
 	$.fn.sliderCaptcha.defaults = {

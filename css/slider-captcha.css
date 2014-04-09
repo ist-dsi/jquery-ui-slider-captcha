@@ -1157,7 +1157,7 @@
   text-align: center;
   color: #a3a3a3;
   background: #eeeeee;
-  display: table;
+  display: inline-block;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -1169,16 +1169,16 @@
   -webkit-border-bottom-left-radius: 3px;
   -ms-border-top-left-radius: 3px;
   -ms-border-bottom-left-radius: 3px;
-  border-radius-top-left: 3px;
-  border-radius-bottom-left: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
   -moz-border-top-right-radius: 3px;
   -moz-border-bottom-right-radius: 3px;
   -webkit-border-top-right-radius: 3px;
   -webkit-border-bottom-right-radius: 3px;
   -ms-border-top-right-radius: 3px;
   -ms-border-bottom-right-radius: 3px;
-  border-radius-top-right: 3px;
-  border-radius-bottom-right: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -1186,10 +1186,11 @@
   -ms-user-select: none;
   user-select: none; }
   .slider_captcha span {
-    display: table-cell;
-    vertical-align: middle;
     cursor: default;
-    position: relative; }
+    position: relative;
+    line-height: 46px; }
+  .slider_captcha > span {
+    margin: 0 auto; }
 
 .swipe-knob {
   position: absolute;
@@ -1198,7 +1199,26 @@
   width: 46px;
   height: 46px;
   background-color: #72d5ee;
-  color: white; }
+  color: white;
+  display: inline-block;
+  overflow: hidden;
+  -ms-overflow-style: hidden;
+  -moz-border-top-left-radius: 3px;
+  -moz-border-bottom-left-radius: 3px;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -ms-border-top-left-radius: 3px;
+  -ms-border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -moz-border-top-right-radius: 3px;
+  -moz-border-bottom-right-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -ms-border-top-right-radius: 3px;
+  -ms-border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px; }
   .swipe-knob:not(.type_filled)[class*=" icon-"] > span:after {
     display: none; }
   .swipe-knob:not(.type_filled) span {
@@ -1232,22 +1252,6 @@
     margin-left: -100%;
     width: 100%;
     cursor: move;
-    -moz-border-top-left-radius: 3px;
-    -moz-border-bottom-left-radius: 3px;
-    -webkit-border-top-left-radius: 3px;
-    -webkit-border-bottom-left-radius: 3px;
-    -ms-border-top-left-radius: 3px;
-    -ms-border-bottom-left-radius: 3px;
-    border-radius-top-left: 3px;
-    border-radius-bottom-left: 3px;
-    -moz-border-top-right-radius: 3px;
-    -moz-border-bottom-right-radius: 3px;
-    -webkit-border-top-right-radius: 3px;
-    -webkit-border-bottom-right-radius: 3px;
-    -ms-border-top-right-radius: 3px;
-    -ms-border-bottom-right-radius: 3px;
-    border-radius-top-right: 3px;
-    border-radius-bottom-right: 3px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -1257,7 +1261,7 @@
     .swipe-knob.type_filled[class*=" icon-"] span {
       position: absolute;
       right: 19px;
-      top: 11px;
+      top: 0;
       cursor: move; }
       .swipe-knob.type_filled[class*=" icon-"] span:after {
         display: none; }
@@ -1267,7 +1271,7 @@
     .swipe-knob.type_filled span {
       position: absolute;
       right: 19px;
-      top: 14px;
+      top: 0;
       cursor: move; }
       .swipe-knob.type_filled span:after {
         font-family: "fontello";
