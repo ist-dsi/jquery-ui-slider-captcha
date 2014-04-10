@@ -6,7 +6,7 @@
  * Licensed under the GPLv3 license:
  *   https://www.gnu.org/copyleft/gpl.html
  *
- * Version:  0.2
+ * Version:  0.2.1
  *
  */
 
@@ -53,7 +53,7 @@
 				$this.append(
 					$( '<span>' ).data( 'text-color-unlocked', s.styles.unlockTextColor ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor } ).text( s.hintText ) ).append( 
 					$( '<div>' ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobColor ).width( s.styles.height ).height( s.styles.height ).append(
-					$( '<span>' ).addClass( 'knob_face' ) ) );
+					$( '<span>' ).data( 'top-end', s.face.topEnd ).data( 'right-end', s.face.rightEnd ).addClass( 'knob_face' ).css({ 'top': s.face.topStart , 'right': s.face.rightStart, "line-height": s.styles.height }) ) );
 					// topEnd and rightEnd end only matters for filled slider type
 			}
 
