@@ -6,7 +6,7 @@
  * Licensed under the GPLv3 license:
  *   https://www.gnu.org/copyleft/gpl.html
  *
- * Version:  0.2.1
+ * Version:  0.3
  *
  */
 
@@ -85,18 +85,19 @@
 							feedback_elem_coord = $feedback_elem.get(0).getBoundingClientRect(),
 							$feedback_elem_parent = $slider_elem.find( 'span > span' ).parent(),
 							feedback_elem_parent = $feedback_elem_parent.get(0).getBoundingClientRect(),
-							feedback_elem_x = 0;
+							feedback_elem_x = 0,
+							animation_type = $feedback_elem.parent().data( 'animation-type' );
 
-						if ( 'swipe_overlap' == $feedback_elem.parent().data( 'animation-type' ) ) {
+						if ( 'swipe_overlap' == animation_type ) {
 							// swipe_overlap
-							if ( ui.offset.left + 10 + 5 + feedback_elem_parent.width > slider_elem_coord.width ) {
-								feedback_elem_x = slider_elem_coord.width - feedback_elem_parent.width - feedback_elem_parent.left - 5;
+							if ( ui.position.left + 10 + 10 + feedback_elem_parent.width > slider_elem_coord.width ) {
+								feedback_elem_x = slider_elem_coord.width - feedback_elem_parent.width - feedback_elem_parent.left + slider_elem_coord.left - 10;
 							} else if ( feedback_elem_parent.left < ui.offset.left + 10) {
 								feedback_elem_x = ui.offset.left - feedback_elem_parent.left + 10;
 							}
 
 							$feedback_elem.css( 'left', feedback_elem_x );
-						} else if( 'swipe' == $feedback_elem.parent().data( 'animation-type' ) ) {
+						} else if( 'swipe' == animation_type ) {
 							// swipe
 							feedback_elem_x = ( feedback_elem_parent.left < ui.offset.left + 10 ) ? ui.offset.left - feedback_elem_parent.left + 10 : 0;
 							$feedback_elem.css( 'left', feedback_elem_x );

@@ -188,6 +188,9 @@ $(document).ready(function() {
 
 ## Changelog
 
+### 0.3
+	- Text animation code issue resolved
+
 ### 0.2
 	- IE browsers issues resolved
 	- Text animation code refactorization
