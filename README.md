@@ -61,7 +61,7 @@ $(document).ready( function () {
 		},
 		hintText: 'Swipe to Unlock',
 		hintTextSize: '',
-		textAfterUnlock: 'Unlocked',
+		hintTextAfterUnlock: 'Unlocked',
 		face: {
 			icon: '',
 			top: '',
@@ -100,7 +100,7 @@ All the options demystified:
 
 `hintTextSize`: '' (default `''`) Hint text font size.
 
-`textAfterUnlock`: (default `'Unlocked'`) Text to be displayed after the slider has been unlocked.
+`hintTextAfterUnlock`: (default `'Unlocked'`) Text to be displayed after the slider has been unlocked.
 
 `face`: (default `{ icon: '', top: '', right: '', textColor: '', iconAfterUnlock: '', topAfterUnlock: '', rightAfterUnlock: '', textColorAfterUnlock: '' }`) Slider knob options, including face content (entypo font) , color and offset.
 
@@ -144,7 +144,7 @@ $(document).ready(function() {
 		textFeedbackAnimation: 'swipe_overlap',
 		hintText: "Swipe to submit",
 		hintTextSize: '12px',
-		textAfterUnlock: 'You can submit now',
+		hintTextAfterUnlock: 'You can submit now',
 		styles: {
 			knobColor: "#5CDF3B",
 			knobColorAfterUnlock: "#000000",

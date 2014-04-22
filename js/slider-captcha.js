@@ -44,14 +44,14 @@
 
 			if ( "filled" == s.type ) {
 				$this.append(
-					$( '<span>' ).append( $( '<span>' ).text( s.hintText ).css( "line-height", s.styles.height ) ).data( 'animation-type', s.textFeedbackAnimation ).data( 'text-color-unlocked', s.styles.textColorAfterUnlock ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor, "line-height": s.styles.height } ) ).append(
+					$( '<span>' ).append( $( '<span>' ).text( s.hintText ).css( "line-height", s.styles.height ) ).data( 'animation-type', s.textFeedbackAnimation ).data( 'text-color-unlocked', s.styles.textColorAfterUnlock ).data( 'text-unlocked', s.hintTextAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor, "line-height": s.styles.height } ) ).append(
 					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobColor, 'left': s.styles.height } ).height( s.styles.height ).append(
 					$( '<span>' ).data( 'top-end', s.face.topAfterUnlock ).data( 'right-end', s.face.rightAfterUnlock ).addClass( 'knob_face' ).css({ 'top': s.face.top , 'right': s.face.right, "line-height": s.styles.height }) ) );
 
 					$this.find( 'span > span' ).css( 'left', 0 );
 			} else {
 				$this.append(
-					$( '<span>' ).data( 'text-color-unlocked', s.styles.textColorAfterUnlock ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor, "line-height": s.styles.height } ).text( s.hintText ) ).append( 
+					$( '<span>' ).data( 'text-color-unlocked', s.styles.textColorAfterUnlock ).data( 'text-unlocked', s.hintTextAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor, "line-height": s.styles.height } ).text( s.hintText ) ).append( 
 					$( '<div>' ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobColor ).width( s.styles.height ).height( s.styles.height ).append(
 					$( '<span>' ).data( 'top-end', s.face.topAfterUnlock ).data( 'right-end', s.face.rightAfterUnlock ).addClass( 'knob_face' ).css({ 'top': s.face.top , 'right': s.face.right, "line-height": s.styles.height }) ) );
 					// topAfterUnlock and rightAfterUnlock end only matters for filled slider type
@@ -150,7 +150,7 @@
 					if ( events['beforeUnlock'] && "function" == typeof( events['beforeUnlock'] ) )
 						events['beforeUnlock'].apply();
 
-					if( s.textAfterUnlock.length )
+					if( s.hintTextAfterUnlock.length )
 						$slider_text_elem.text( $slider_text_elem.data( 'text-unlocked' ) );
 
 					$drop_elem.droppable( "option", "disabled", true );
@@ -210,7 +210,7 @@
 
 		hintText: 'Swipe to Unlock',
 		hintTextSize: '',
-		textAfterUnlock: 'Unlocked',
+		hintTextAfterUnlock: 'Unlocked',
 		face: {
 			// todo image face
 			image: '',
@@ -226,10 +226,10 @@
 			textColorAfterUnlock: ''
 		},
 		events: {
-			beforeUnlock: function() {},
-			afterUnlock: function() {},
-			beforeSubmit: function() {},
-			noSubmit: function() {},
+			beforeUnlock: function() {return !1},
+			afterUnlock: function() {return !1},
+			beforeSubmit: function() {return !1},
+			noSubmit: function() {return !1},
 			submitAfterUnlock: 0,
 			validateOnServer: 0,
 			validateOnServerParamName: 'slider_captcha_validated'
