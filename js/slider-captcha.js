@@ -44,27 +44,27 @@
 
 			if ( "filled" == s.type ) {
 				$this.append(
-					$( '<span>' ).append( $( '<span>' ).text( s.hintText ).css( "line-height", s.styles.height ) ).data( 'animation-type', s.textFeedbackAnimation ).data( 'text-color-unlocked', s.styles.unlockTextColor ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor, "line-height": s.styles.height } ) ).append(
+					$( '<span>' ).append( $( '<span>' ).text( s.hintText ).css( "line-height", s.styles.height ) ).data( 'animation-type', s.textFeedbackAnimation ).data( 'text-color-unlocked', s.styles.textColorAfterUnlock ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor, "line-height": s.styles.height } ) ).append(
 					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobColor, 'left': s.styles.height } ).height( s.styles.height ).append(
-					$( '<span>' ).data( 'top-end', s.face.topEnd ).data( 'right-end', s.face.rightEnd ).addClass( 'knob_face' ).css({ 'top': s.face.topStart , 'right': s.face.rightStart, "line-height": s.styles.height }) ) );
+					$( '<span>' ).data( 'top-end', s.face.topAfterUnlock ).data( 'right-end', s.face.rightAfterUnlock ).addClass( 'knob_face' ).css({ 'top': s.face.top , 'right': s.face.right, "line-height": s.styles.height }) ) );
 
 					$this.find( 'span > span' ).css( 'left', 0 );
 			} else {
 				$this.append(
-					$( '<span>' ).data( 'text-color-unlocked', s.styles.unlockTextColor ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor, "line-height": s.styles.height } ).text( s.hintText ) ).append( 
+					$( '<span>' ).data( 'text-color-unlocked', s.styles.textColorAfterUnlock ).data( 'text-unlocked', s.textAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor, "line-height": s.styles.height } ).text( s.hintText ) ).append( 
 					$( '<div>' ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobColor ).width( s.styles.height ).height( s.styles.height ).append(
-					$( '<span>' ).data( 'top-end', s.face.topEnd ).data( 'right-end', s.face.rightEnd ).addClass( 'knob_face' ).css({ 'top': s.face.topStart , 'right': s.face.rightStart, "line-height": s.styles.height }) ) );
-					// topEnd and rightEnd end only matters for filled slider type
+					$( '<span>' ).data( 'top-end', s.face.topAfterUnlock ).data( 'right-end', s.face.rightAfterUnlock ).addClass( 'knob_face' ).css({ 'top': s.face.top , 'right': s.face.right, "line-height": s.styles.height }) ) );
+					// topAfterUnlock and rightAfterUnlock end only matters for filled slider type
 			}
 
-			if ( s.face.entypoStart.length )
-				$this.find( '.swipe-knob' ).data( 'start-icon', s.face.entypoStart ).addClass( 'icon-' + s.face.entypoStart );
+			if ( s.face.icon.length )
+				$this.find( '.swipe-knob' ).data( 'start-icon', s.face.icon ).addClass( 'icon-' + s.face.icon );
 
-			if ( s.face.entypoEnd.length )
-				$this.find( '.swipe-knob' ).data( 'end-icon', s.face.entypoEnd );
+			if ( s.face.iconAfterUnlock.length )
+				$this.find( '.swipe-knob' ).data( 'end-icon', s.face.iconAfterUnlock );
 
-			$this.find( '.knob_face' ).css( 'color', s.face.textColorStart ).data( 'end-text-color',  s.face.textColorEnd );
-			$this.data( 'events', s.events ).append( $( '<div>' ).addClass( 'knob-destiny' ).data( 'disabled-knob-color', s.styles.disabledKnobColor ).width( s.styles.height ).height( s.styles.height ) ).data( 'form', $form);
+			$this.find( '.knob_face' ).css( 'color', s.face.textColor ).data( 'end-text-color',  s.face.textColorAfterUnlock );
+			$this.data( 'events', s.events ).append( $( '<div>' ).addClass( 'knob-destiny' ).data( 'disabled-knob-color', s.styles.knobColorAfterUnlock ).width( s.styles.height ).height( s.styles.height ) ).data( 'form', $form);
 
 
 			// Finished slider criation
@@ -200,10 +200,10 @@
 		textFeedbackAnimation: 'overlap',
 		styles: {
 			knobColor: '',
-			disabledKnobColor: '#5CDF3B',
+			knobColorAfterUnlock: '#5CDF3B',
 			backgroundColor: '',
 			textColor: '',
-			unlockTextColor: '#000',
+			textColorAfterUnlock: '#000',
 			width: '100%',
 			height: ''
 		},
@@ -215,15 +215,15 @@
 			// todo image face
 			image: '',
 
-			entypoStart: '',
-			topStart: '',
-			rightStart: '',
-			textColorStart: '',
+			icon: '',
+			top: '',
+			right: '',
+			textColor: '',
 
-			entypoEnd: '',
-			topEnd: '',
-			rightEnd: '',
-			textColorEnd: ''
+			iconAfterUnlock: '',
+			topAfterUnlock: '',
+			rightAfterUnlock: '',
+			textColorAfterUnlock: ''
 		},
 		events: {
 			beforeUnlock: function() {},

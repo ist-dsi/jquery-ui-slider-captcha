@@ -31,8 +31,8 @@
 	$(document).ready(function() {
 		$( '#slider' ).sliderCaptcha({
 			face: {
-				entypoStart: 'plus',
-				entypoEnd: 'stop'
+				icon: 'plus',
+				iconAfterUnlock: 'stop'
 			}
 		});
 		$( '#slider_filled' ).sliderCaptcha({
@@ -49,22 +49,22 @@
 			textAfterUnlock: 'You can submit now',
 			styles: {
 				knobColor: "#5CDF3B",
-				disabledKnobColor: "#000000",
+				knobColorAfterUnlock: "#000000",
 				backgroundColor: "#444",
 				textColor: "#fff",
-				unlockTextColor: "#fff",
+				textColorAfterUnlock: "#fff",
 				width: '90%',
 				height: '35px'
 			},
 			face: {
-				topStart: 0,
-				rightStart: 9,
-				entypoStart: 'right-thin',
-				textColorStart: '#ddd',
-				textColorEnd: '#5CDF3B',
-				topEnd: 0,
-				rightEnd: 9,				
-				entypoEnd: 'flag'
+				top: 0,
+				right: 9,
+				icon: 'right-thin',
+				textColor: '#ddd',
+				textColorAfterUnlock: '#5CDF3B',
+				topAfterUnlock: 0,
+				rightAfterUnlock: 9,				
+				iconAfterUnlock: 'flag'
 			},
 			events: {
 				afterUnlock: function () {
@@ -92,22 +92,22 @@
 			textAfterUnlock: 'You can submit now',
 			styles: {
 				knobColor: "#5CDF3B",
-				disabledKnobColor: "#000000",
+				knobColorAfterUnlock: "#000000",
 				backgroundColor: "#444",
 				textColor: "#fff",
-				unlockTextColor: "#fff",
+				textColorAfterUnlock: "#fff",
 				width: '75%',
 				height: '40px'
 			},
 			face: {
-				topStart: 0,
-				rightStart: 9,
-				entypoStart: 'right-thin',
-				textColorStart: '#ddd',
-				textColorEnd: '#5CDF3B',
-				topEnd: 0,
-				rightEnd: 9,				
-				entypoEnd: 'flag'
+				top: 0,
+				right: 9,
+				icon: 'right-thin',
+				textColor: '#ddd',
+				textColorAfterUnlock: '#5CDF3B',
+				topAfterUnlock: 0,
+				rightAfterUnlock: 9,				
+				iconAfterUnlock: 'flag'
 			},
 			events: {
 				afterUnlock: function () {

@@ -52,10 +52,10 @@ $(document).ready( function () {
 		textFeedbackAnimation: 'overlap',
 		styles: {
 			knobColor: '',
-			disabledKnobColor: '#5CDF3B',
+			knobColorAfterUnlock: '#5CDF3B',
 			backgroundColor: '',
 			textColor: '',
-			unlockTextColor: '#000',
+			textColorAfterUnlock: '#000',
 			width: '100%',
 			height: ''
 		},
@@ -63,14 +63,14 @@ $(document).ready( function () {
 		hintTextSize: '',
 		textAfterUnlock: 'Unlocked',
 		face: {
-			entypoStart: '',
-			topStart: '',
-			rightStart: '',
-			textColorStart: '',
-			entypoEnd: '',
-			topEnd: '',
-			rightEnd: '',
-			textColorEnd: ''
+			icon: '',
+			top: '',
+			right: '',
+			textColor: '',
+			iconAfterUnlock: '',
+			topAfterUnlock: '',
+			rightAfterUnlock: '',
+			textColorAfterUnlock: ''
 		},
 
 		// events
@@ -94,7 +94,7 @@ All the options demystified:
 
 `textFeedbackAnimation`: (default `'overlap'`) This option is only available with the 'filled' slider type. Push and swipe out the feedback text in slider bar (`'swipe'`), push the feedback text in slider bar (`'swipe_overlap'`) or overlap text feedback (`'overlap'`).
 
-`styles`: (default `{ knobColor: '', disabledKnobColor: '#5CDF3B', backgroundColor: '', textColor: '', unlockTextColor: '#000', width: '100%', height: '' }` ) General styles, including color, text and dimensions options.
+`styles`: (default `{ knobColor: '', knobColorAfterUnlock: '#5CDF3B', backgroundColor: '', textColor: '', textColorAfterUnlock: '#000', width: '100%', height: '' }` ) General styles, including color, text and dimensions options.
 
 `hintText`: (default `'Swipe to Unlock'`) Text to be displayed in initial state.
 
@@ -102,7 +102,7 @@ All the options demystified:
 
 `textAfterUnlock`: (default `'Unlocked'`) Text to be displayed after the slider has been unlocked.
 
-`face`: (default `{ entypoStart: '', topStart: '', rightStart: '', textColorStart: '', entypoEnd: '', topEnd: '', rightEnd: '', textColorEnd: '' }`) Slider knob options, including face content (entypo font) , color and offset.
+`face`: (default `{ icon: '', top: '', right: '', textColor: '', iconAfterUnlock: '', topAfterUnlock: '', rightAfterUnlock: '', textColorAfterUnlock: '' }`) Slider knob options, including face content (entypo font) , color and offset.
 
 `events`: (default `{ beforeUnlock: function() {}, afterUnlock: function() {}, beforeSubmit: function() {}, noSubmit: function() {} ,submitAfterUnlock: 0, validateOnServer: 0, validateOnServerParamName: 'slider_captcha_validated' }`) Events options, like functions to be called before and after unlock and before submit. Here can be activated if the validation will be performed in server (`validateOnServer`) and with which param name in form request should be used (`validateOnServerParamName`), and if submit should be performed after the unlock (`submitAfterUnlock`).
 
@@ -115,8 +115,8 @@ All the options demystified:
 $(document).ready(function() {
 	$( '#slider' ).sliderCaptcha({
 		face: {
-			entypoStart: 'plus',
-			entypoEnd: 'stop'
+			icon: 'plus',
+			iconAfterUnlock: 'stop'
 		}
 	});
 })
@@ -147,22 +147,22 @@ $(document).ready(function() {
 		textAfterUnlock: 'You can submit now',
 		styles: {
 			knobColor: "#5CDF3B",
-			disabledKnobColor: "#000000",
+			knobColorAfterUnlock: "#000000",
 			backgroundColor: "#444",
 			textColor: "#fff",
-			unlockTextColor: "#fff",
+			textColorAfterUnlock: "#fff",
 			width: '90%',
 			height: '35px'
 		},
 		face: {
-			topStart: 4,
-			rightStart: 9,
-			entypoStart: 'right-thin',
-			textColorStart: '#ddd',
-			textColorEnd: '#5CDF3B',
-			topEnd: 3,
-			rightEnd: 9,				
-			entypoEnd: 'flag'
+			top: 4,
+			right: 9,
+			icon: 'right-thin',
+			textColor: '#ddd',
+			textColorAfterUnlock: '#5CDF3B',
+			topAfterUnlock: 3,
+			rightAfterUnlock: 9,				
+			iconAfterUnlock: 'flag'
 		},
 		events: {
 			afterUnlock: function () {
@@ -190,6 +190,7 @@ $(document).ready(function() {
 
 ### 0.3
 	- Text animation code issue resolved
+	- New options name
 
 ### 0.2
 	- IE browsers issues resolved
