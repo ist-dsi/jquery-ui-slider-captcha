@@ -24,8 +24,8 @@
 			settings.textFeedbackAnimation = 'swipe';
 		}
 
-		settings.styles.width = getUnitSize( settings.styles.width );
-		settings.styles.height = getUnitSize( settings.styles.height );
+		settings.width = getUnitSize( settings.width );
+		settings.height = getUnitSize( settings.height );
 
 		settings.hintTextSize  = getUnitSize( settings.hintTextSize );
 
@@ -51,20 +51,20 @@
 			}
 
 			// Start slider criation
-			$this.addClass( 'slider_captcha' ).width( s.styles.width ).height( s.styles.height ).css( 'background', s.styles.backgroundColor ).data( 'options', s );
+			$this.addClass( 'slider_captcha' ).width( s.width ).height( s.height ).css( 'background', s.styles.backgroundColor ).data( 'options', s );
 
 			if ( "filled" == s.type ) {
 				$this.append(
-					$( '<span>' ).append( $( '<span>' ).text( s.hintText ).css( "line-height", s.styles.height ) ).data( 'animation-type', s.textFeedbackAnimation ).data( 'text-color-unlocked', s.styles.textColorAfterUnlock ).data( 'text-unlocked', s.hintTextAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor, "line-height": s.styles.height } ) ).append(
-					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobColor, 'left': s.styles.height } ).height( s.styles.height ).append(
-					$( '<span>' ).data( 'top-end', s.face.topAfterUnlock ).data( 'right-end', s.face.rightAfterUnlock ).addClass( 'knob_face' ).css({ 'top': s.face.top , 'right': s.face.right, "line-height": s.styles.height }) ) );
+					$( '<span>' ).append( $( '<span>' ).text( s.hintText ).css( "line-height", s.height ) ).data( 'animation-type', s.textFeedbackAnimation ).data( 'text-color-unlocked', s.styles.textColorAfterUnlock ).data( 'text-unlocked', s.hintTextAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor, "line-height": s.height } ) ).append(
+					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobColor, 'left': s.height } ).height( s.height ).append(
+					$( '<span>' ).data( 'top-end', s.face.topAfterUnlock ).data( 'right-end', s.face.rightAfterUnlock ).addClass( 'knob_face' ).css({ 'top': s.face.top , 'right': s.face.right, "line-height": s.height }) ) );
 
 					$this.find( 'span > span' ).css( 'left', 0 );
 			} else {
 				$this.append(
-					$( '<span>' ).data( 'text-color-unlocked', s.styles.textColorAfterUnlock ).data( 'text-unlocked', s.hintTextAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor, "line-height": s.styles.height } ).text( s.hintText ) ).append( 
-					$( '<div>' ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobColor ).width( s.styles.height ).height( s.styles.height ).append(
-					$( '<span>' ).data( 'top-end', s.face.topAfterUnlock ).data( 'right-end', s.face.rightAfterUnlock ).addClass( 'knob_face' ).css({ 'top': s.face.top , 'right': s.face.right, "line-height": s.styles.height }) ) );
+					$( '<span>' ).data( 'text-color-unlocked', s.styles.textColorAfterUnlock ).data( 'text-unlocked', s.hintTextAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor, "line-height": s.height } ).text( s.hintText ) ).append( 
+					$( '<div>' ).addClass( 'swipe-knob ui-draggable' ).css( 'background', s.styles.knobColor ).width( s.height ).height( s.height ).append(
+					$( '<span>' ).data( 'top-end', s.face.topAfterUnlock ).data( 'right-end', s.face.rightAfterUnlock ).addClass( 'knob_face' ).css({ 'top': s.face.top , 'right': s.face.right, "line-height": s.height }) ) );
 					// topAfterUnlock and rightAfterUnlock end only matters for filled slider type
 			}
 
@@ -75,7 +75,7 @@
 				$this.find( '.swipe-knob' ).data( 'end-icon', s.face.iconAfterUnlock );
 
 			$this.find( '.knob_face' ).css( 'color', s.face.textColor ).data( 'end-text-color',  s.face.textColorAfterUnlock );
-			$this.data( 'events', s.events ).append( $( '<div>' ).addClass( 'knob-destiny' ).data( 'disabled-knob-color', s.styles.knobColorAfterUnlock ).width( s.styles.height ).height( s.styles.height ) ).data( 'form', $form);
+			$this.data( 'events', s.events ).append( $( '<div>' ).addClass( 'knob-destiny' ).data( 'disabled-knob-color', s.styles.knobColorAfterUnlock ).width( s.height ).height( s.height ) ).data( 'form', $form);
 
 
 			// Finished slider criation
@@ -225,11 +225,10 @@
 			knobColorAfterUnlock: '#5CDF3B',
 			backgroundColor: '',
 			textColor: '',
-			textColorAfterUnlock: '#000',
-			width: '100%',
-			height: ''
+			textColorAfterUnlock: '#000'
 		},
-
+		width: '100%',
+		height: '',
 		hintText: 'Swipe to Unlock',
 		hintTextSize: '',
 		hintTextAfterUnlock: 'Unlocked',
@@ -256,5 +255,5 @@
 			validateOnServer: 0,
 			validateOnServerParamName: 'slider_captcha_validated'
 		}
-	};
+	}
 }( jQuery ));

@@ -55,10 +55,10 @@ $(document).ready( function () {
 			knobColorAfterUnlock: '#5CDF3B',
 			backgroundColor: '',
 			textColor: '',
-			textColorAfterUnlock: '#000',
-			width: '100%',
-			height: ''
+			textColorAfterUnlock: '#000'
 		},
+		width: '100%',
+		height: ''
 		hintText: 'Swipe to Unlock',
 		hintTextSize: '',
 		hintTextAfterUnlock: 'Unlocked',
