@@ -1196,6 +1196,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  cursor: move;
   width: 46px;
   height: 46px;
   background-color: #72d5ee;
