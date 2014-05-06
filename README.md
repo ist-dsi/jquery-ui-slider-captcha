@@ -188,6 +188,9 @@ $(document).ready(function() {
 
 ## Changelog
 
+### 0.3.1
+	- Added getUnitSize function for mismatch units
+
 ### 0.3
 	- Text animation code issue resolved
 	- New options name

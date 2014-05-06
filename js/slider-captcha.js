@@ -6,7 +6,7 @@
  * Licensed under the GPLv3 license:
  *   https://www.gnu.org/copyleft/gpl.html
  *
- * Version:  0.3
+ * Version:  0.3.1
  *
  */
 
@@ -23,6 +23,17 @@
 		if ( settings && 'overlap' != settings.textFeedbackAnimation && 'swipe_overlap' != settings.textFeedbackAnimation && 'swipe' != settings.textFeedbackAnimation ) {
 			settings.textFeedbackAnimation = 'swipe';
 		}
+
+		settings.styles.width = getUnitSize( settings.styles.width );
+		settings.styles.height = getUnitSize( settings.styles.height );
+
+		settings.hintTextSize  = getUnitSize( settings.hintTextSize );
+
+		settings.face.top = getUnitSize( settings.face.top );
+		settings.face.right = getUnitSize( settings.face.right );
+
+		settings.face.topAfterUnlock = getUnitSize( settings.face.topAfterUnlock );
+		settings.face.rightAfterUnlock = getUnitSize( settings.face.rightAfterUnlock );
 
 		return this.each( function() {
 
@@ -193,6 +204,17 @@
 			})
 		});
 	};
+
+
+	var getUnitSize = function( n ) {
+		if( !n )
+			return n;
+
+		if( n.toString().slice(-1) == "%" || n.toString().slice(-2) == "px" )
+			return n;
+
+		return parseInt( n ) + "px";
+	}
 
 	// Plugin defaults
 	$.fn.sliderCaptcha.defaults = {
