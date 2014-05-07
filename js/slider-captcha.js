@@ -56,7 +56,7 @@
 			if ( "filled" == s.type ) {
 				$this.append(
 					$( '<span>' ).append( $( '<span>' ).text( s.hintText ).css( "line-height", s.height ) ).data( 'animation-type', s.textFeedbackAnimation ).data( 'text-color-unlocked', s.styles.textColorAfterUnlock ).data( 'text-unlocked', s.hintTextAfterUnlock ).css( { 'font-size': s.hintTextSize, 'color': s.styles.textColor, "line-height": s.height } ) ).append(
-					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobColor, 'left': s.height } ).height( s.height ).append(
+					$( '<div>' ).addClass( 'swipe-knob ui-draggable type_filled' ).css( {'background': s.styles.knobColor, 'left': s.height, 'position': 'absolute' } ).height( s.height ).append(
 					$( '<span>' ).data( 'top-end', s.face.topAfterUnlock ).data( 'right-end', s.face.rightAfterUnlock ).addClass( 'knob_face' ).css({ 'top': s.face.top , 'right': s.face.right, "line-height": s.height }) ) );
 
 					$this.find( 'span > span' ).css( 'left', 0 );
