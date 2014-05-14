@@ -174,8 +174,30 @@
 
 					if ( $form.length ) {
 
-						if ( events['validateOnServer'] )
-							$form.append( $( '<input>' ).attr( 'type', 'hidden' ).attr( 'name', events['validateOnServerParamName'] ).val( 1 ) );
+						if ( events['validateOnServer'] ) {
+							var result = 1;
+
+							if ( events['highValidationOnServer'] ) {
+
+								// Set cookie that expires each 2 minutes
+								var h = generateHashOnlyLetters(5);
+								createCookie( "sh", h, 2/24/60);
+								// Get all necessary values
+								var a = aRange(),
+									deter = a * ( detRange() + (Number( $slider_elem.attr('id').length) % 4 ) + 1 );
+									b = cdRange(),
+									c = cdRange() * a,
+									d = ( deter + b * c ) / a,
+									M = a + "," + b + ",0," + c + "," + d + ",0,0,0,1";
+
+								result =  "|" + M + "|=" + deter + ";" + h;
+								$form.append( $( '<input>' ).attr( 'type', 'hidden' ).attr( 'name', 'm' ).val( M ) );
+								$form.append( $( '<input>' ).attr( 'type', 'hidden' ).attr( 'name', 'sliderName' ).val( $slider_elem.attr('id') ) );
+							}
+
+							$form.append( $( '<input>' ).attr( 'type', 'hidden' ).attr( 'name', events['validateOnServerParamName'] ).val( result ) );
+
+						}
 						
 						$form.find( 'input[type="submit"]' ).removeAttr( 'disabled' ).click( function () {
 							// Event before submit
@@ -216,6 +238,67 @@
 		return parseInt( n ) + "px";
 	}
 
+	var randomNumber = function ( min, max ) {
+		if ( max === undefined) {
+			max = min;
+			min = 0;
+		}
+
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+	var getRandomNumber = function ( min, max ) {
+		return function () {
+			return randomNumber( min, max )
+		}
+	}
+
+	var getRandomNumberNotNull = function ( min, max ) {
+		return function () {
+			if ( min * max > 0)
+				return randomNumber( min, max )
+			else
+				return randomNumber(0,1) ? randomNumber( min, -1 ) : randomNumber( 1, max );
+		}
+	}
+
+	var generateHash = function ( a ) {
+		return function ( len ) {
+		
+			if ( "object" != typeof( a ) || !a.length )
+				return "";
+
+			var result_array = Array();
+
+			for (var i = 0; i < len; i++) {
+
+				var slot = randomNumber( a.length - 1 );
+
+				if ( 1 < a[slot].length )
+					result_array.push( String.fromCharCode( randomNumber( a[slot][0], a[slot][1] ) ) )
+				else
+					result_array.push( String.fromCharCode( randomNumber( a[slot][0] ) ) )
+			}
+			
+			return result_array.join("");
+		}
+	}
+
+	var generateHashOnlyLetters = generateHash([[65,90],[97,122]]);
+	var aRange = getRandomNumberNotNull( -2, 2 ),
+		detRange = getRandomNumber( 1, 4 ),
+		cdRange = getRandomNumberNotNull( -4, 4 );
+
+	function createCookie(name,value,days) {
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime()+(days*24*60*60*1000));
+			var expires = "; expires="+date.toGMTString();
+		}
+		else var expires = "";
+		document.cookie = name+"="+value+expires+"; path=/";
+	}
+
 	// Plugin defaults
 	$.fn.sliderCaptcha.defaults = {
 		type: 'normal',
@@ -253,6 +336,7 @@
 			noSubmit: function() {return !1},
 			submitAfterUnlock: 0,
 			validateOnServer: 0,
+			highValidationOnServer: 0,
 			validateOnServerParamName: 'slider_captcha_validated'
 		}
 	}
