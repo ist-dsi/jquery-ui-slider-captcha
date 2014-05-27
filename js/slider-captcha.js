@@ -47,12 +47,12 @@
 			}
 
 			// Disable submit button if submit after unlock
-			if ( $form.length && $form.find( 'input[type="submit"]' ) && s.events.submitAfterUnlock ) {
-					$form.find( 'input[type="submit"]' ).hide();
+			if ( $form.length && $form.find( '[type="submit"]' ) && s.events.submitAfterUnlock ) {
+					$form.find( '[type="submit"]' ).hide();
 			} else {
 				// Disable input submit form
-				if ( $form.length && $form.find( 'input[type="submit"]' ) )
-					$form.find( 'input[type="submit"]' ).attr('disabled','disabled');
+				if ( $form.length && $form.find( '[type="submit"]' ) )
+					$form.find( '[type="submit"]' ).attr('disabled','disabled');
 			}
 
 			// Start slider criation
@@ -74,7 +74,7 @@
 			}
 
 			if ( s.face.icon.length )
-				$this.find( '.swipe-knob' ).data( 'start-icon', s.face.icon ).addClass( 'icon-' + s.face.icon );
+				$this.find( '.swipe-knob' ).data( 'start-icon', s.face.icon ).addClass( 'sc-icon-' + s.face.icon );
 
 			if ( s.face.iconAfterUnlock.length )
 				$this.find( '.swipe-knob' ).data( 'end-icon', s.face.iconAfterUnlock );
@@ -151,9 +151,9 @@
 					if ( $drag_elem.data( 'end-icon' ) ) {
 
 						if ( $drag_elem.data( 'start-icon' ) )
-							$drag_elem.removeClass( 'icon-' + $drag_elem.data( 'start-icon' ) );
+							$drag_elem.removeClass( 'sc-icon-' + $drag_elem.data( 'start-icon' ) );
 
-						$drag_elem.addClass( 'icon-' + $drag_elem.data( 'end-icon' ) );
+						$drag_elem.addClass( 'sc-icon-' + $drag_elem.data( 'end-icon' ) );
 
 						if ( $drag_elem.find( 'span' ).data( 'top-end' ) )
 							$drag_elem.find( 'span' ).css( 'top', $drag_elem.find( 'span' ).data( 'top-end' ) );
@@ -203,7 +203,7 @@
 							$form.append( $( '<input>' ).attr( 'type', 'hidden' ).attr( 'name', events['validateOnServerParamName'] ).val( result ) );
 						}
 						
-						$form.find( 'input[type="submit"]' ).removeAttr( 'disabled' ).click( function () {
+						$form.find( '[type="submit"]' ).removeAttr( 'disabled' ).click( function () {
 							// Event before submit
 							if ( events['beforeSubmit'] &&  "function" == typeof( events['beforeSubmit'] ) )
 								events['beforeSubmit'].apply();
@@ -211,10 +211,10 @@
 
 						if ( events['submitAfterUnlock'] ) {
 
-							if ( !$form.find( 'input[type=submit]' ).length )
+							if ( !$form.find( '[type="submit"]' ).length )
 								$form.append( $('<input>').attr( "type", "submit" ).hide() )
 
-							$form.find( 'input[type=submit]' ).click();
+							$form.find( '[type="submit"]' ).click();
 
 							if ( $form.find( ':focus' ).length ) {
 
