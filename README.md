@@ -104,7 +104,7 @@ All the options demystified:
 
 `face`: (default `{ icon: '', top: '', right: '', textColor: '', iconAfterUnlock: '', topAfterUnlock: '', rightAfterUnlock: '', textColorAfterUnlock: '' }`) Slider knob options, including face content (entypo font) , color and offset.
 
-`events`: (default `{ beforeUnlock: function() {}, afterUnlock: function() {}, beforeSubmit: function() {}, noSubmit: function() {} ,submitAfterUnlock: 0, validateOnServer: 0, validateOnServerParamName: 'slider_captcha_validated' }`) Events options, like functions to be called before and after unlock and before submit. Here can be activated if the validation will be performed in server (`validateOnServer`) and with which param name in form request should be used (`validateOnServerParamName`), and if submit should be performed after the unlock (`submitAfterUnlock`).
+`events`: (default `{ beforeUnlock: function() {}, afterUnlock: function() {}, beforeSubmit: function() {}, noSubmit: function() {} ,submitAfterUnlock: 0, highValidationOnServer:0, validateOnServer: 0, validateOnServerParamName: 'slider_captcha_validated' }`) Events options, like functions to be called before and after unlock and before submit. Here can be activated if the validation will be performed in server (`validateOnServer`) and with which param name in form request should be used (`validateOnServerParamName`), and if submit should be performed after the unlock (`submitAfterUnlock`).
 
 
 ## Examples
@@ -179,6 +179,7 @@ $(document).ready(function() {
 			},			
 			submitAfterUnlock: 0,
 			validateOnServer: 1,
+			highValidationOnServer: 0,
 			validateOnServerParamName: "my_form_param_name"
 		}
 	});
@@ -187,6 +188,10 @@ $(document).ready(function() {
 
 
 ## Changelog
+
+### 0.4
+	- Foundation css issue resolved
+	- High server validation option
 
 ### 0.3.1
 	- Added getUnitSize function for mismatch units
