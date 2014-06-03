@@ -6,7 +6,7 @@
  * Licensed under the GPLv3 license:
  *   https://www.gnu.org/copyleft/gpl.html
  *
- * Version:  0.3.3
+ * Version:  0.3.4
  *
  */
 
@@ -42,7 +42,6 @@
 				$form = $this.closest( "form" );
 
 			if ( s['highValidationOnServer'] ) {
-				console.log( "sh_" + $this.attr( 'id' ) );
 				eraseCookie( "sh_" + $this.attr( 'id' ) );
 			}
 
@@ -73,10 +72,10 @@
 					// topAfterUnlock and rightAfterUnlock end only matters for filled slider type
 			}
 
-			if ( s.face.icon.length )
+			if ( s.face.icon )
 				$this.find( '.swipe-knob' ).data( 'start-icon', s.face.icon ).addClass( 'sc-icon-' + s.face.icon );
 
-			if ( s.face.iconAfterUnlock.length )
+			if ( s.face.iconAfterUnlock )
 				$this.find( '.swipe-knob' ).data( 'end-icon', s.face.iconAfterUnlock );
 
 			$this.find( '.knob_face' ).css( 'color', s.face.textColor ).data( 'end-text-color',  s.face.textColorAfterUnlock );
