@@ -2,12 +2,11 @@
 /* Modules and Variables
  */
 @font-face {
-  font-family: "sc_fontello";
+  font-family: "fontello";
   src: url("entypo/fontello.eot");
   src: url("entypo/fontello.eot?#iefix") format("embedded-opentype"), url("entypo/fontello.woff") format("woff"), url("entypo/fontello.ttf") format("truetype"), url("entypo/fontello.svg#sc_fontello") format("svg");
   font-weight: normal;
   font-style: normal; }
-
 [class="sc-icon-"] > span:before,
 [class*=" sc-icon-"] > span:before {
   font-family: "sc_fontello";
