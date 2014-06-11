@@ -3,8 +3,8 @@
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>Copyright (C) 2013 by original authors @ fontello.com</metadata>
 <defs>
-<font id="fontello" horiz-adv-x="1000" >
-<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<font id="sc_fontello" horiz-adv-x="1000" >
+<font-face font-family="sc_fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
 <missing-glyph horiz-adv-x="1000" />
 <glyph glyph-name="note" unicode="&#xe918;" d="m381 820q0-42 46-97t90-100t61-119t-39-154q-20-34-26-16q-2 6 0 16q10 18 6 56t-13 78t-43 73t-82 41l0-536q2-48-37-95t-105-71q-74-28-143-8t-89 76t20 115t116 85q86 30 158 4l0 652l80 0z" horiz-adv-x="582" />
 <glyph glyph-name="logo-db" unicode="&#xe801;" d="m546 240q48-90-4-180q-42-70-115-88t-151 26l-64 36l-108-184l-56 32l206 358q-68-10-134 28l-120 70l186 324l122-70q66-40 92-100l206 358l58-34l-108-186l64-36q76-44 98-119t-20-143q-48-88-152-92z m44 302l-64 38l-124-216q0-2-2-6l62-36q52-30 100-17t76 61t15 97t-63 79z m-440-222q52-30 100-17t76 61t15 98t-63 78l-64 38l-128-222z m156-270q52-30 100-17t76 61t14 97t-64 79l-62 36l-4-4l-124-216z" horiz-adv-x="726" />
