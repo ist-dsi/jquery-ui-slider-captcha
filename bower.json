@@ -1,0 +1,34 @@
+{
+  "name": "slider-captcha",
+  "version": "0.2.1",
+  "authors": [
+    "João Pargana <jpargana@ist.utl.pt>"
+  ],
+  "description": "jQuery plugin for Slider Captcha",
+  "main": "[\"js/slider-captcha.js\", \"css/slider-captcha.css\"]",
+  "keywords": [
+    "[\"slider\"",
+    "\"captcha\"",
+    "\"ui\"",
+    "\"responsive\"",
+    "\"spam\"",
+    "\"antispam\"",
+    "\"jquery\"",
+    "\"jquery-ui\"",
+    "\"JavaScript\"]"
+  ],
+  "license": "GPLv3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-ui-touch-punch-improved": "~0.3.1",
+    "jquery": "~2.1.0",
+    "jquery.ui": "~1.10.4"
+  }
+}
