@@ -16,7 +16,7 @@
 
 <link rel="stylesheet" href="css/slider-captcha.css?ver=0.1" media="screen">
 
-<script src="components/jQuery/dist/jquery.min.js?ver=0.1"></script>
+<script src="components/jquery/dist/jquery.min.js?ver=0.1"></script>
 
 <script src="components/jquery.ui/ui/jquery.ui.core.js?ver=0.1"></script>
 <script src="components/jquery.ui/ui/jquery.ui.widget.js?ver=0.1"></script>
@@ -136,23 +136,24 @@
 		<h4>Filled slider</h4>
 		<div id="slider_filled"></div>
 		<h4>Custom slider in a form</h4>
-		<form method="post" action="/teste.php">
+		<form method="post" action="/ok.php">
 			<div>
 				<input name="email" placeholder="Insira o seu email" class="input_box" type="email" id="email" pattern=".*@.*" required>
 			</div>
-			<div style="width: 250px;margin 0 auto;">
+			<div style="width: 250px;margin:0 auto;">
 				<div id="slider_full"></div>
 			</div>
 			<input type="submit"/>
 		</form>
-		<form method="post" action="/teste.php">
+		<form method="post" action="/ok.php">
 			<div>
-				<input name="email" placeholder="Insira o seu email" class="input_box" type="email" id="email" pattern=".*@.*" required>
+				<input name="email" placeholder="Insira o seu email" class="input_box" type="email" id="email2" pattern=".*@.*" required>
 			</div>
 			<div style="width: 500px;">
 				<div id="slider_full_1"></div>
 			</div>
-			<button type="submit"/>
-		</form>		
+            <button type="submit">Submit</button>
+		</form>
+    </main>
 </body>
 </html>
